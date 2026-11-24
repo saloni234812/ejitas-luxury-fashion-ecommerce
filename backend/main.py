@@ -80,17 +80,19 @@ async def security_and_rate_limit_middleware(request: Request, call_next):
     # 3. Process Request
     response = await call_next(request)
 
-    # 4. Strict Security Headers
+    # 4. Strict Security Headers with permissive media & style policies for Tailwind & Fonts
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "SAMEORIGIN"
     response.headers["X-XSS-Protection"] = "1; mode=block"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     response.headers["Content-Security-Policy"] = (
-        "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com; "
-        "img-src 'self' https: data: blob:; "
-        "font-src 'self' https://fonts.gstatic.com; "
-        "connect-src 'self';"
+        "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; "
+        "script-src * 'unsafe-inline' 'unsafe-eval' data: blob:; "
+        "style-src * 'unsafe-inline' https: http:; "
+        "font-src * data: https: http:; "
+        "img-src * data: blob: https: http:; "
+        "connect-src *;"
     )
 
     return response
