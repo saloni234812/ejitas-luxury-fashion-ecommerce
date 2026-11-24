@@ -241,10 +241,12 @@ const Ejitas = {
 document.addEventListener('DOMContentLoaded', () => {
   Ejitas.syncCart();
 
-  // Register Service Worker for PWA / installable app
+  // Register Service Worker with auto-update
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' })
-      .then((reg) => console.log('SW registered, scope:', reg.scope))
+    navigator.serviceWorker.register('/sw.js?v=4', { scope: '/' })
+      .then((reg) => {
+        reg.update();
+      })
       .catch((err) => console.warn('SW registration failed:', err));
   }
 });
