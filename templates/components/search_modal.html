@@ -1,0 +1,103 @@
+<!-- Live Product Search Modal -->
+<div class="fixed inset-0 z-50 hidden items-start justify-center pt-16 bg-primary/50 backdrop-blur-sm" id="search-modal">
+  <div class="absolute inset-0" onclick="closeSearchModal()"></div>
+  <div class="relative w-full max-w-xl mx-4 z-10">
+    <div class="bg-surface-bright rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-surface-variant/40">
+      <!-- Search Input Bar -->
+      <div class="p-4 flex items-center gap-3 border-b border-surface-variant/40 bg-surface">
+        <span class="material-symbols-outlined text-[24px] text-secondary">search</span>
+        <input 
+          id="search-input" 
+          type="text" 
+          placeholder="Search vanity trunks, slings, organizers, totes..." 
+          class="w-full bg-transparent font-body-md text-on-surface placeholder:text-outline focus:outline-none" 
+          oninput="handleSearch(this.value)"
+        />
+        <button onclick="closeSearchModal()" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface" type="button">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Quick category pills inside search modal -->
+      <div class="px-4 py-2.5 bg-surface-container-low flex items-center gap-2 overflow-x-auto text-[12px]">
+        <span class="text-on-surface-variant font-medium shrink-0">Popular:</span>
+        <button onclick="fillSearch('Vanity Trunk')" class="px-2.5 py-1 rounded-full bg-surface-bright text-on-surface hover:text-secondary shrink-0 shadow-xs" type="button">Vanity Trunk</button>
+        <button onclick="fillSearch('Sling')" class="px-2.5 py-1 rounded-full bg-surface-bright text-on-surface hover:text-secondary shrink-0 shadow-xs" type="button">Sling Bags</button>
+        <button onclick="fillSearch('Tote')" class="px-2.5 py-1 rounded-full bg-surface-bright text-on-surface hover:text-secondary shrink-0 shadow-xs" type="button">Work Totes</button>
+        <button onclick="fillSearch('Rose Gold')" class="px-2.5 py-1 rounded-full bg-surface-bright text-on-surface hover:text-secondary shrink-0 shadow-xs" type="button">Rose Gold</button>
+      </div>
+
+      <!-- Live Search Results -->
+      <div id="search-results" class="max-h-96 overflow-y-auto p-4 flex flex-col divide-y divide-surface-variant/40">
+        <div class="text-center py-8 text-on-surface-variant font-body-sm">
+          Type above to search handcrafted leather goods and vanity trunks.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let searchTimeout = null;
+
+  function openSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    setTimeout(() => {
+      const input = document.getElementById('search-input');
+      if (input) input.focus();
+    }, 100);
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+  }
+
+  function fillSearch(term) {
+    const input = document.getElementById('search-input');
+    input.value = term;
+    handleSearch(term);
+  }
+
+  function handleSearch(q) {
+    clearTimeout(searchTimeout);
+    const container = document.getElementById('search-results');
+    
+    if (!q || q.trim().length === 0) {
+      container.innerHTML = '<div class="text-center py-8 text-on-surface-variant font-body-sm">Type above to search handcrafted leather goods and vanity trunks.</div>';
+      return;
+    }
+
+    searchTimeout = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/products?search=${encodeURIComponent(q.trim())}`);
+        const products = await res.json();
+        
+        if (products.length === 0) {
+          container.innerHTML = `<div class="text-center py-8 text-on-surface-variant font-body-sm">No atelier creations found for "${q}".</div>`;
+          return;
+        }
+
+        container.innerHTML = products.map(p => `
+          <a href="/product/${p.slug}" class="flex items-center gap-3 py-3 hover:bg-surface-container-low/60 rounded-xl px-2 transition-colors">
+            <img src="${p.images[0]}" alt="${p.name}" class="w-14 h-14 object-cover rounded-lg bg-surface-container flex-shrink-0" />
+            <div class="flex-1 min-w-0">
+              <span class="text-label-caps text-secondary font-bold text-[9px] uppercase tracking-wider">${p.category}</span>
+              <h4 class="font-title-md text-[13px] text-on-surface truncate font-semibold">${p.name}</h4>
+              <p class="font-body-sm text-[11px] text-on-surface-variant truncate">${p.short_description || ''}</p>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <span class="font-currency-price text-[14px] text-primary font-bold">₹${p.price.toLocaleString('en-IN')}</span>
+              <span class="material-symbols-outlined text-[16px] text-outline block mt-1">chevron_right</span>
+            </div>
+          </a>
+        `).join('');
+      } catch (e) {
+        console.error(e);
+      }
+    }, 250);
+  }
+</script>

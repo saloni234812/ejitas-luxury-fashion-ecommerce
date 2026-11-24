@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Order Confirmed | Ejitas{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full max-w-2xl mx-auto px-margin py-space-md pb-28">
+  <!-- Celebratory Banner -->
+  <div class="rounded-2xl bg-surface-container-lowest p-space-md sm:p-space-lg border border-surface-variant/40 shadow-sm flex flex-col items-center text-center gap-3">
+    <div class="w-16 h-16 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shadow-md">
+      <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+    </div>
+
+    <div>
+      <span class="font-label-caps text-secondary uppercase tracking-widest font-bold">Thank You For Your Patronage</span>
+      <h1 class="font-headline-lg-mobile sm:font-headline-lg font-medium text-on-surface mt-1">
+        Your Atelier Order is Confirmed
+      </h1>
+      <p class="font-body-md text-on-surface-variant max-w-md mt-1">
+        An order confirmation email and WhatsApp notification with your live tracking link have been dispatched.
+      </p>
+    </div>
+
+    <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low text-body-sm font-mono text-on-surface">
+      <span>Order Number:</span>
+      <strong class="text-secondary select-all">{{ order.order_number }}</strong>
+    </div>
+  </div>
+
+  <!-- Order Details Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-space-md">
+    <!-- Delivery Address Card -->
+    <div class="p-space-md rounded-2xl bg-surface-container-lowest border border-surface-variant/40 shadow-xs flex flex-col gap-1.5">
+      <span class="font-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Delivery Address</span>
+      <h3 class="font-title-md text-on-surface font-semibold">{{ order.customer_name }}</h3>
+      <p class="font-body-sm text-on-surface-variant leading-relaxed">
+        {{ order.address_line1 }}<br/>
+        {% if order.address_line2 %}{{ order.address_line2 }}<br/>{% endif %}
+        {{ order.city }}, {{ order.state }} - {{ order.postal_code }}<br/>
+        India
+      </p>
+      <p class="font-body-sm text-[12px] text-on-surface-variant mt-1">
+        Phone: +91 {{ order.customer_phone }}
+      </p>
+    </div>
+
+    <!-- Dispatch & Tracking Card -->
+    <div class="p-space-md rounded-2xl bg-surface-container-lowest border border-surface-variant/40 shadow-xs flex flex-col gap-1.5">
+      <span class="font-label-caps text-on-surface-variant uppercase tracking-wider font-bold">Dispatch & Logistics</span>
+      <div class="flex items-center gap-1.5 text-body-sm text-emerald-700 font-medium">
+        <span class="material-symbols-outlined text-[16px]">local_shipping</span>
+        <span>Estimated Delivery: {{ order.estimated_delivery }}</span>
+      </div>
+      <p class="font-body-sm text-on-surface-variant text-[12px]">
+        Courier: Blue Dart Pan-India Luxury Air Express
+      </p>
+      <p class="font-body-sm text-[12px] text-on-surface-variant font-mono">
+        Tracking AWB: <strong class="text-on-surface">{{ order.tracking_number }}</strong>
+      </p>
+      <p class="font-body-sm text-[11px] text-secondary mt-1">
+        Payment: {{ order.payment_method }} ({{ order.payment_status }})
+      </p>
+    </div>
+  </div>
+
+  <!-- Ordered Items Card -->
+  <div class="mt-space-md p-space-md rounded-2xl bg-surface-container-lowest border border-surface-variant/40 shadow-xs flex flex-col gap-3">
+    <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold border-b border-surface-variant/40 pb-2">
+      Handcrafted Creations in this Order
+    </h3>
+
+    <div class="flex flex-col divide-y divide-surface-variant/30">
+      {% for item in order.items %}
+      <div class="flex items-center gap-3 py-3">
+        <img src="{{ item.product_image }}" alt="{{ item.product_name }}" class="w-14 h-16 object-cover rounded-lg bg-surface-container flex-shrink-0" />
+        <div class="flex-1 min-w-0">
+          <h4 class="font-title-md text-[14px] text-on-surface truncate font-semibold">{{ item.product_name }}</h4>
+          <p class="font-body-sm text-[12px] text-on-surface-variant">Colour: {{ item.color }} • Qty: {{ item.quantity }}</p>
+        </div>
+        <div class="text-right">
+          <span class="font-currency-price text-on-surface font-bold">₹{{ "{:,.0f}".format(item.total) }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Final Financial Summary -->
+    <div class="border-t border-surface-variant/40 pt-3 flex flex-col gap-1.5 text-body-sm text-on-surface-variant">
+      <div class="flex justify-between">
+        <span>Subtotal</span>
+        <span>₹{{ "{:,.0f}".format(order.subtotal) }}</span>
+      </div>
+      {% if order.discount > 0 %}
+      <div class="flex justify-between text-secondary">
+        <span>Privilege Discount ({{ order.coupon_code }})</span>
+        <span>-₹{{ "{:,.0f}".format(order.discount) }}</span>
+      </div>
+      {% endif %}
+      <div class="flex justify-between text-secondary">
+        <span>Insured Pan-India Express Shipping</span>
+        <span class="uppercase tracking-wider font-semibold text-[10px]">Complimentary</span>
+      </div>
+      <div class="border-t border-surface-variant/40 pt-2 flex justify-between font-title-lg text-title-lg text-on-surface font-bold">
+        <span>Total Paid</span>
+        <span class="font-currency-price text-xl text-primary font-bold">₹{{ "{:,.0f}".format(order.total) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex flex-col sm:flex-row gap-3 mt-space-lg">
+    <button onclick="window.print()" class="flex-1 h-[48px] rounded-full bg-surface-container-highest text-on-surface font-title-md flex items-center justify-center gap-2 active:scale-95 transition-transform hover:bg-surface-dim">
+      <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+      <span>Print Atelier Receipt</span>
+    </button>
+    <a href="/shop" class="flex-1 h-[48px] rounded-full bg-primary text-on-primary font-title-md flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-md">
+      <span>Continue Shopping</span>
+      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </a>
+  </div>
+</div>
+{% endblock %}

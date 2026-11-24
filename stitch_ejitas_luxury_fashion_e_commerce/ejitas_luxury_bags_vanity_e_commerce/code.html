@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#261900", "surface-variant": "#e4e2df", "primary": "#000000", "secondary": "#8a4c54", "on-primary-fixed": "#1c1b1b", "error-container": "#ffdad6", "surface-bright": "#fbf9f6", "outline-variant": "#c4c7c7", "surface-tint": "#5f5e5e", "on-tertiary-container": "#a17f3b", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#c8c6c5", "inverse-primary": "#c8c6c5", "error": "#ba1a1a", "secondary-fixed": "#ffd9dc", "tertiary-fixed": "#ffdea5", "secondary-fixed-dim": "#ffb2ba", "on-tertiary": "#ffffff", "on-background": "#1b1c1a", "primary-container": "#1c1b1b", "surface-container-low": "#f5f3f0", "inverse-on-surface": "#f2f0ed", "on-error": "#ffffff", "on-surface": "#1b1c1a", "tertiary-fixed-dim": "#e9c176", "surface-container": "#efeeeb", "surface": "#fbf9f6", "on-secondary-fixed-variant": "#6e353d", "on-surface-variant": "#444748", "on-tertiary-fixed-variant": "#5d4201", "primary-fixed": "#e5e2e1", "outline": "#747878", "tertiary-container": "#261900", "on-primary-container": "#858383", "on-error-container": "#93000a", "on-primary": "#ffffff", "on-secondary-fixed": "#380b14", "on-secondary-container": "#7a3f47", "tertiary": "#000000", "surface-dim": "#dbdad7", "on-secondary": "#ffffff", "surface-container-highest": "#e4e2df", "surface-container-high": "#eae8e5", "secondary-container": "#fdafb7", "background": "#fbf9f6", "inverse-surface": "#30312f", "on-primary-fixed-variant": "#474746" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-tablet": "1.5rem", "space-xl": "2.5rem", "space-lg": "1.5rem", "margin": "1rem", "margin-tablet": "2rem", "space-2xs": "0.25rem", "space-md": "1rem", "space-2xl": "4rem", "gutter-desktop": "2rem", "gutter": "1rem", "space-xs": "0.5rem", "margin-desktop": "4rem", "space-sm": "0.75rem" }, "fontFamily": { "display-hero": ["Playfair Display"], "body-sm": ["Plus Jakarta Sans"], "currency-price": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "display-hero-mobile": ["Playfair Display"], "title-md": ["Plus Jakarta Sans"], "headline-lg": ["Playfair Display"], "headline-lg-mobile": ["Playfair Display"], "label-caps": ["Plus Jakarta Sans"], "headline-sm": ["Playfair Display"], "headline-md": ["Playfair Display"], "title-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"] }, "fontSize": { "display-hero": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "currency-price": ["16px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "title-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "500" }], "label-caps": ["10px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" }], "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "30px", "fontWeight": "500" }], "title-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#fbf9f6;color:#1b1c1a;-webkit-font-smoothing:antialiased;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}details>summary{list-style:none;}details>summary::-webkit-details-marker{display:none;}</style></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-full selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 w-full z-50 pt-safe"><div class="bg-tertiary-container text-tertiary-fixed h-7 px-gutter flex items-center justify-center overflow-hidden"><p class="font-label-caps text-label-caps uppercase text-center tracking-widest truncate">Free shipping across India on orders above ₹1,499 | Easy 7-day returns</p></div><div class="h-16 px-gutter bg-surface/85 backdrop-blur-xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-xs"><button aria-label="Open Menu" class="w-11 h-11 flex items-center justify-center text-on-surface active:scale-95 transition-transform" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full')" type="button"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="flex items-center gap-space-xs"><img alt="Ejitas Brand Logo" class="h-8 w-auto object-contain" src="/static/images/ejitas-logo.jpg"font-headline-sm text-headline-sm font-medium tracking-tight text-on-surface">Ejitas</span></div></div><div class="flex items-center gap-space-2xs"><button aria-label="Search Catalog" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary active:scale-95 transition-all" type="button"><span class="material-symbols-outlined text-[22px]">search</span></button><a aria-label="Saved Wishlist" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary active:scale-95 transition-all" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span></a><button aria-label="Shopping Bag" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary relative active:scale-95 transition-all" onclick="document.getElementById('cart-drawer').classList.remove('translate-x-full')" type="button"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="absolute top-2 right-2 min-w-[16px] h-4 px-1 rounded-full bg-secondary text-on-secondary font-label-caps text-[9px] flex items-center justify-center font-bold">2</span></button><div class="w-8 h-8 rounded-full overflow-hidden ml-space-2xs ring-1 ring-surface-variant"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="/static/images/ejitas-logo.jpg"fixed inset-0 z-50 -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-drawer"><div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full')"></div><div class="relative w-4/5 max-w-sm h-full bg-surface-bright flex flex-col justify-between pt-safe pb-safe shadow-[0_8px_30px_rgba(92,85,78,0.12)]"><div class="flex flex-col overflow-y-auto px-gutter py-space-md"><div class="flex items-center justify-between pb-space-md"><span class="font-headline-sm text-headline-sm text-on-surface">Ejitas Atelier</span><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full')" type="button"><span class="material-symbols-outlined">close</span></button></div><nav class="flex flex-col gap-space-xs mt-space-sm"><a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" data-path="home" href="#"><span>Home</span><span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span></a><details class="group"><summary class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary cursor-pointer"><span>Shop Collection</span><span class="material-symbols-outlined text-[18px] text-outline group-open:rotate-90 transition-transform">chevron_right</span></summary><div class="pl-gutter py-space-xs flex flex-col gap-space-xs text-on-surface-variant font-body-md text-body-md"><a class="py-1 hover:text-on-surface" data-path="vanity-bags" href="#">Vanity Cases &amp; Trunks</a><a class="py-1 hover:text-on-surface" data-path="sling-bags" href="#">Sling &amp; Crossbody</a><a class="py-1 hover:text-on-surface" data-path="totes" href="#">Artisanal Totes</a><a class="py-1 hover:text-on-surface" data-path="organisers" href="#">Compartment Organisers</a></div></details><a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" data-path="new-arrivals" href="#"><span>New Arrivals</span><span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span></a><a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" data-path="bestsellers" href="#"><span>Bestsellers</span><span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span></a><a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" data-path="brand-atelier" href="#"><span>Brand Atelier &amp; Craft</span><span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span></a></nav></div><div class="p-gutter bg-surface-container-low flex flex-col gap-space-sm"><a class="flex items-center justify-center gap-space-xs w-full py-3 rounded-full bg-primary text-on-primary font-title-md text-title-md" href="https://wa.me/" target="_blank"><span class="material-symbols-outlined text-[18px]">support_agent</span><span>WhatsApp Concierge</span></a><div class="text-center text-on-surface-variant font-body-sm text-body-sm">Bespoke Indian Vanity Luxury</div></div></div></div><div class="fixed inset-0 z-50 translate-x-full transition-transform duration-300 ease-in-out" id="cart-drawer"><div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="document.getElementById('cart-drawer').classList.add('translate-x-full')"></div><div class="absolute right-0 w-5/6 max-w-md h-full bg-surface-bright flex flex-col justify-between pt-safe pb-safe shadow-[0_8px_30px_rgba(92,85,78,0.12)]"><div class="p-gutter flex items-center justify-between"><div class="flex items-center gap-2"><span class="font-headline-sm text-headline-sm text-on-surface">Your Bag</span><span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-caps text-label-caps">2 Items</span></div><button class="w-11 h-11 flex items-center justify-center text-on-surface-variant" onclick="document.getElementById('cart-drawer').classList.add('translate-x-full')" type="button"><span class="material-symbols-outlined">close</span></button></div><div class="flex-1 px-gutter overflow-y-auto flex flex-col items-center justify-center text-center gap-space-sm"><div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant"><span class="material-symbols-outlined text-3xl">shopping_bag</span></div><p class="font-headline-sm text-headline-sm text-on-surface">Curated Vanity Selection</p><p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">The Heritage Vanity Trunk and Classic Organiser are currently reserved in your bag.</p></div><div class="p-gutter bg-surface-container-low flex flex-col gap-space-sm"><div class="flex items-center justify-between font-title-lg text-title-lg"><span class="text-on-surface-variant font-normal">Estimated Total</span><span class="font-currency-price text-currency-price text-on-surface">₹7,890</span></div><a class="w-full h-[52px] rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center active:scale-95 transition-transform" data-path="checkout" href="#">Proceed to Checkout</a></div></div></div><main class="flex flex-col relative w-full pt-[92px] pb-[88px] bg-surface flex-grow"><div class="flex flex-col w-full">
+<!-- Hero Section -->
+<section class="relative w-full px-gutter pt-space-xs pb-space-lg">
+<div class="relative w-full rounded-2xl overflow-hidden shadow-[0px_4px_24px_rgba(92,85,78,0.08)] bg-surface-container">
+<div class="relative w-full aspect-[4/5] sm:aspect-[16/11]">
+<img alt="Elegant Indian woman in sophisticated luxury attire, holding an exquisite rose-gold and cream leather vanity case bag with gold hardware" class="w-full h-full object-cover object-top" src="/static/images/ejitas-logo.jpg<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-bright/95 backdrop-blur-md text-on-surface text-label-caps font-label-caps uppercase tracking-widest shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Festive Atelier 2025
+          </span>
+</div>
+<div class="absolute bottom-0 inset-x-0 p-gutter sm:p-space-lg flex flex-col gap-space-xs text-on-primary">
+<p class="font-label-caps text-label-caps uppercase tracking-widest text-tertiary-fixed opacity-90">Bespoke Indian Luxury</p>
+<h1 class="font-display-hero-mobile text-display-hero-mobile text-on-primary leading-tight">Royale Lifestyle.<br/>Carry Ejitas.</h1>
+<p class="font-body-md text-body-md text-surface-container-high max-w-sm line-clamp-2">Handcrafted vanity bags and organizers tailored for the grace of the modern Indian woman.</p>
+<div class="flex flex-col sm:flex-row gap-space-xs mt-space-2xs pt-space-2xs">
+<a class="w-full sm:w-auto h-[50px] px-6 rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform" data-path="shop" href="#">
+<span>Shop the Collection</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto h-[50px] px-6 rounded-full bg-surface-bright/20 backdrop-blur-md text-on-primary font-title-md text-title-md flex items-center justify-center active:scale-95 transition-transform hover:bg-surface-bright/30" data-path="new-arrivals" href="#">
+              Explore New Arrivals
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Value Propositions Banner -->
+<section class="px-gutter py-space-xs">
+<div class="grid grid-cols-3 gap-space-2xs p-space-sm rounded-xl bg-surface-container-low">
+<div class="flex flex-col items-center text-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[22px]">local_shipping</span>
+<span class="font-title-md text-[11px] leading-tight font-semibold text-on-surface">Pan-India Express</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant hidden sm:inline">Complimentary over ₹1,499</span>
+</div>
+<div class="flex flex-col items-center text-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[22px]">verified</span>
+<span class="font-title-md text-[11px] leading-tight font-semibold text-on-surface">Artisan Verified</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant hidden sm:inline">24K brushed hardware</span>
+</div>
+<div class="flex flex-col items-center text-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[22px]">published_with_changes</span>
+<span class="font-title-md text-[11px] leading-tight font-semibold text-on-surface">Easy 7-Day Returns</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant hidden sm:inline">Doorstep pickup available</span>
+</div>
+</div>
+</section>
+<!-- Featured Categories Horizontal Scroller -->
+<section class="py-space-lg">
+<div class="px-gutter flex items-end justify-between mb-space-sm">
+<div>
+<p class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-semibold">Curation</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">Signature Categories</h2>
+</div>
+<a class="font-title-md text-title-md text-secondary flex items-center gap-0.5" data-path="categories" href="#">
+<span>View all</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<div class="flex gap-space-sm overflow-x-auto px-gutter pb-space-xs snap-x snap-mandatory">
+<!-- Category 1 -->
+<a class="flex-shrink-0 w-36 sm:w-44 flex flex-col gap-2 snap-start group" data-path="vanity-cases" href="#">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High-end structured luxury vanity trunk case in blush rose vegan leather with polished gold clasp lock set against a warm ivory minimalist background with soft sun shadows" src="/static/images/ejitas-logo.jpg<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-bright/90 text-on-surface font-label-caps text-[9px] uppercase tracking-wider font-bold">Iconic</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Vanity Trunks</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">12 Styles</span>
+</div>
+</a>
+<!-- Category 2 -->
+<a class="flex-shrink-0 w-36 sm:w-44 flex flex-col gap-2 snap-start group" data-path="sling-bags" href="#">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Quilted crossbody luxury sling bag in pearl white leather with a delicate gold chain strap displayed on an organic sandstone pedestal under studio lighting" src="/static/images/ejitas-logo.jpg</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Luxury Slings</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">9 Styles</span>
+</div>
+</a>
+<!-- Category 3 -->
+<a class="flex-shrink-0 w-36 sm:w-44 flex flex-col gap-2 snap-start group" data-path="totes" href="#">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Handcrafted commute tote bag in caramel brown leather with dedicated vanity compartment side zippers and clean structural silhouette on warm silk background" src="/static/images/ejitas-logo.jpg</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Commute Totes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">6 Styles</span>
+</div>
+</a>
+<!-- Category 4 -->
+<a class="flex-shrink-0 w-36 sm:w-44 flex flex-col gap-2 snap-start group" data-path="organizers" href="#">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Open cosmetic travel organizer displaying neatly segmented velvet slots, brush holders, and golden zipper detailing in champagne hue" src="/static/images/ejitas-logo.jpg</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Cosmetic Organizers</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">14 Styles</span>
+</div>
+</a>
+<!-- Category 5 -->
+<a class="flex-shrink-0 w-36 sm:w-44 flex flex-col gap-2 snap-start group" data-path="jewelry-boxes" href="#">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Petite compact travel jewelry case wrapped in soft powder pink leather open to display rings, bangles and fine necklaces on velvet pillows" src="/static/images/ejitas-logo.jpg</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Jewelry Boxes</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">8 Styles</span>
+</div>
+</a>
+<!-- Category 6 -->
+<a class="flex-shrink-0 w-36 sm:w-44 flex flex-col gap-2 snap-start group" data-path="gift-sets" href="#">
+<div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Lavish festive gift hamper set featuring an Ejitas vanity case, silk scrunchie, and personalized leather tag wrapped with champagne gold satin ribbon" src="/static/images/ejitas-logo.jpg<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-caps text-[9px] uppercase tracking-wider font-bold">Festive</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Festive Gift Sets</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Limited Edition</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Curated Bestsellers Section -->
+<section class="px-gutter py-space-md">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-semibold">Atelier Selects</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Curated Bestsellers</h2>
+</div>
+<div class="flex items-center gap-1">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Handcrafted in India</span>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Product 1 -->
+<div class="flex flex-col rounded-2xl bg-surface-container-low overflow-hidden p-space-xs shadow-[0px_4px_20px_rgba(92,85,78,0.04)] relative group">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="The Royale Vanity Trunk in rose gold nappa leather with polished brass corners and handle on an ivory pedestal" src="/static/images/ejitas-logo.jpg<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-[9px] uppercase tracking-wider font-bold shadow-sm">Bestseller</span>
+<button aria-label="Add to Wishlist" class="wishlist-btn absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-bright/90 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-xs pb-space-2xs px-1 flex flex-col flex-grow justify-between gap-2">
+<div>
+<div class="flex items-center gap-1 text-[11px] text-on-tertiary-container font-medium">
+<span class="material-symbols-outlined text-[13px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.95 (340)</span>
+</div>
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface line-clamp-1 mt-0.5">The Royale Vanity Trunk</h3>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Rose Gold Nappa</p>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-currency-price text-currency-price text-on-surface font-bold">₹3,499</span>
+<span class="font-body-sm text-[12px] line-through text-outline">₹4,999</span>
+<span class="font-label-caps text-[10px] text-secondary font-bold">30% OFF</span>
+</div>
+<button class="mt-2 w-full h-9 rounded-full bg-primary text-on-primary font-title-md text-[12px] flex items-center justify-center gap-1.5 active:scale-95 transition-all" onclick="addToCart(this, 'The Royale Vanity Trunk')" type="button">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span>
+<span>Add to Bag</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex flex-col rounded-2xl bg-surface-container-low overflow-hidden p-space-xs shadow-[0px_4px_20px_rgba(92,85,78,0.04)] relative group">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Aria Quilted Crossbody Sling in ivory pearl leather with dual zip compartments and monogram charm on a luxury marble vanity" src="/static/images/ejitas-logo.jpg<button aria-label="Add to Wishlist" class="wishlist-btn absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-bright/90 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-xs pb-space-2xs px-1 flex flex-col flex-grow justify-between gap-2">
+<div>
+<div class="flex items-center gap-1 text-[11px] text-on-tertiary-container font-medium">
+<span class="material-symbols-outlined text-[13px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9 (184 reviews)</span>
+</div>
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface line-clamp-1 mt-0.5">Aria Quilted Sling</h3>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Ivory Pearl Vegan</p>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-currency-price text-currency-price text-on-surface font-bold">₹2,199</span>
+<span class="font-body-sm text-[12px] line-through text-outline">₹2,999</span>
+<span class="font-label-caps text-[10px] text-secondary font-bold">26% OFF</span>
+</div>
+<button class="mt-2 w-full h-9 rounded-full bg-primary text-on-primary font-title-md text-[12px] flex items-center justify-center gap-1.5 active:scale-95 transition-all" onclick="addToCart(this, 'Aria Quilted Sling')" type="button">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span>
+<span>Add to Bag</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="flex flex-col rounded-2xl bg-surface-container-low overflow-hidden p-space-xs shadow-[0px_4px_20px_rgba(92,85,78,0.04)] relative group">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Celeste Structured Vanity Pouch in champagne gold finish with interior mirror and lipstick holders on draped linen" src="/static/images/ejitas-logo.jpg<button aria-label="Add to Wishlist" class="wishlist-btn absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-bright/90 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-xs pb-space-2xs px-1 flex flex-col flex-grow justify-between gap-2">
+<div>
+<div class="flex items-center gap-1 text-[11px] text-on-tertiary-container font-medium">
+<span class="material-symbols-outlined text-[13px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.8 (92)</span>
+</div>
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface line-clamp-1 mt-0.5">Celeste Structured Pouch</h3>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Champagne Gold</p>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-currency-price text-currency-price text-on-surface font-bold">₹1,699</span>
+<span class="font-body-sm text-[12px] line-through text-outline">₹2,299</span>
+<span class="font-label-caps text-[10px] text-secondary font-bold">26% OFF</span>
+</div>
+<button class="mt-2 w-full h-9 rounded-full bg-primary text-on-primary font-title-md text-[12px] flex items-center justify-center gap-1.5 active:scale-95 transition-all" onclick="addToCart(this, 'Celeste Structured Pouch')" type="button">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span>
+<span>Add to Bag</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="flex flex-col rounded-2xl bg-surface-container-low overflow-hidden p-space-xs shadow-[0px_4px_20px_rgba(92,85,78,0.04)] relative group">
+<div class="relative w-full aspect-square rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Mira Everyday Luxury Tote in rich caramel leather sitting upright with handles curved naturally next to a brass desk lamp" src="/static/images/ejitas-logo.jpg<button aria-label="Add to Wishlist" class="wishlist-btn absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-bright/90 backdrop-blur-sm flex items-center justify-center text-on-surface hover:text-secondary active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="pt-space-xs pb-space-2xs px-1 flex flex-col flex-grow justify-between gap-2">
+<div>
+<div class="flex items-center gap-1 text-[11px] text-on-tertiary-container font-medium">
+<span class="material-symbols-outlined text-[13px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9 (215)</span>
+</div>
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface line-clamp-1 mt-0.5">Mira Everyday Luxury Tote</h3>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Caramel Leather</p>
+</div>
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-currency-price text-currency-price text-on-surface font-bold">₹2,899</span>
+<span class="font-body-sm text-[12px] line-through text-outline">₹3,799</span>
+<span class="font-label-caps text-[10px] text-secondary font-bold">24% OFF</span>
+</div>
+<button class="mt-2 w-full h-9 rounded-full bg-primary text-on-primary font-title-md text-[12px] flex items-center justify-center gap-1.5 active:scale-95 transition-all" onclick="addToCart(this, 'Mira Everyday Luxury Tote')" type="button">
+<span class="material-symbols-outlined text-[16px]">keyboard_double_arrow_left</span>
+<span>Add to Bag</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Craftsmanship & Atelier Spotlight -->
+<section class="px-gutter py-space-lg">
+<div class="rounded-2xl bg-surface-container p-gutter sm:p-space-lg relative overflow-hidden">
+<div class="relative z-10 flex flex-col gap-space-sm">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">The Atelier Standard</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-1">Designed for Every Day, Every Occasion</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Built to endure Indian travel climates, wedding seasons, and daily boardroom transitions with impeccable poise.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mt-space-2xs">
+<!-- Feature 1 -->
+<div class="p-space-sm rounded-xl bg-surface-bright shadow-sm flex items-start gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface">Handcrafted Vegan Saffiano</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Scratch-resistant textured grain that retains pristine form over years.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="p-space-sm rounded-xl bg-surface-bright shadow-sm flex items-start gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface">Signature 24K Gold Hardware</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tarnish-proof metallic zippers and trunk latch mechanisms custom-cast for Ejitas.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="p-space-sm rounded-xl bg-surface-bright shadow-sm flex items-start gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">water_drop</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-title-md text-title-md text-on-surface">Water-Resistant Silk Interior</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Plush spill-safe velvet lining for effortless cosmetic cleaning.</p>
+</div>
+</div>
+</div>
+<div class="pt-space-xs flex justify-center">
+<a class="inline-flex items-center gap-2 font-title-md text-title-md text-secondary hover:underline" data-path="craft" href="#">
+<span>Discover the Artisan Craftsmanship Process</span>
+<span class="material-symbols-outlined text-[18px]">east</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Verified Indian Customer Reviews Carousel -->
+<section class="py-space-md">
+<div class="px-gutter mb-space-sm">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-semibold">Voices of Ejitas</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Loved by Women Across India</h2>
+</div>
+<div class="flex gap-space-sm overflow-x-auto px-gutter pb-space-xs snap-x snap-mandatory">
+<!-- Review 1 -->
+<div class="flex-shrink-0 w-72 sm:w-80 rounded-2xl bg-surface-container-low p-space-md flex flex-col justify-between gap-space-sm snap-start shadow-[0px_2px_12px_rgba(92,85,78,0.03)]">
+<div class="flex flex-col gap-2">
+<div class="flex text-on-tertiary-container">
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+            “The vanity bag keeps all my essentials spotless while traveling between Mumbai and Delhi. Truly top-tier luxury!”
+          </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-2xs">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-bold text-label-caps">AS</div>
+<div class="flex flex-col">
+<span class="font-title-md text-[13px] text-on-surface font-semibold">Ananya S.</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Bangalore • Verified Buyer</span>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="flex-shrink-0 w-72 sm:w-80 rounded-2xl bg-surface-container-low p-space-md flex flex-col justify-between gap-space-sm snap-start shadow-[0px_2px_12px_rgba(92,85,78,0.03)]">
+<div class="flex flex-col gap-2">
+<div class="flex text-on-tertiary-container">
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+            “Carried the Royale Trunk to my cousin’s destination wedding in Jaipur. Countless compliments on the hardware and velvet slots.”
+          </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-2xs">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-label-caps">RM</div>
+<div class="flex flex-col">
+<span class="font-title-md text-[13px] text-on-surface font-semibold">Radhika Mehta</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">South Mumbai • Verified Buyer</span>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="flex-shrink-0 w-72 sm:w-80 rounded-2xl bg-surface-container-low p-space-md flex flex-col justify-between gap-space-sm snap-start shadow-[0px_2px_12px_rgba(92,85,78,0.03)]">
+<div class="flex flex-col gap-2">
+<div class="flex text-on-tertiary-container">
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+            “The Aria crossbody fits my iPhone Pro Max, compact powder, cards, and lipstick effortlessly. Unmatched craft at this price.”
+          </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-2xs">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-bold text-label-caps">PK</div>
+<div class="flex flex-col">
+<span class="font-title-md text-[13px] text-on-surface font-semibold">Pooja Kapoor</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">New Delhi • Verified Buyer</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Community & Instagram Grid (#MyEjitasLuxury) -->
+<section class="px-gutter py-space-md">
+<div class="flex flex-col items-center text-center mb-space-sm">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">Community Lookbook</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">#MyEjitasLuxury</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mt-1">Tag @ejitasatelier on Instagram to be spotlighted in our seasonal gallery.</p>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container relative group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Chic Indian woman in modern silk sari holding an Ejitas rose gold vanity trunk at an upscale wedding event" src="/static/images/ejitas-logo.jpg<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container relative group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Overhead flatlay aesthetic of Ejitas cosmetic organizer filled with luxury beauty lipsticks, compacts, and perfumes on marble" src="/static/images/ejitas-logo.jpg<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container relative group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Lifestyle shot of an executive woman holding the Mira luxury tote at a sunlit airport lounge in India" src="/static/images/ejitas-logo.jpg<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Luxury Newsletter Incentive -->
+<section class="px-gutter py-space-md">
+<div class="rounded-2xl bg-surface-container-high p-space-md sm:p-space-lg flex flex-col items-center text-center gap-space-xs">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">mark_email_read</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">Privilege Club</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Enjoy 10% Off Your First Atelier Order</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Receive exclusive invitations to private festive previews, bespoke monogramming events, and artisanal trunk reveals.</p>
+<form class="w-full max-w-md mt-space-2xs flex flex-col sm:flex-row gap-2" onsubmit="handleSubscribe(event)">
+<input class="w-full h-[48px] px-4 rounded-full bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary shadow-sm" placeholder="Enter your email address" required="" type="email"/>
+<button class="w-full sm:w-auto px-6 h-[48px] rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform shadow-md" type="submit">
+          Claim 10% Off
+        </button>
+</form>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Instant code sent to inbox. Valid on orders above ₹1,499.</span>
+</div>
+</section>
+<!-- Comprehensive Footer & India Support -->
+<footer class="mt-space-lg pt-space-lg pb-space-2xl bg-surface-container-low px-gutter flex flex-col gap-space-md">
+<!-- Brand Info -->
+<div class="flex flex-col gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Ejitas Atelier India</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Curating poised vanity cases, handcrafted slings, and compartment organizers honoring the discerning Indian woman.</p>
+</div>
+<!-- Concierge Action -->
+<div class="p-space-sm rounded-xl bg-surface-bright flex items-center justify-between gap-space-xs shadow-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">WhatsApp Atelier Concierge</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mon-Sat • 10:00 AM - 7:00 PM IST</span>
+</div>
+</div>
+<a class="px-4 py-2 rounded-full bg-primary text-on-primary font-title-md text-[12px] flex items-center gap-1 active:scale-95 transition-transform" href="https://wa.me/" target="_blank">
+<span>Chat</span>
+<span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+</div>
+<!-- Quick Links Grid -->
+<div class="grid grid-cols-2 gap-space-md pt-space-xs">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface font-bold">Collections</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="vanity-cases" href="#">Vanity Trunks</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="sling-bags" href="#">Crossbody Slings</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="totes" href="#">Work &amp; Travel Totes</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="organizers" href="#">Cosmetic Pouches</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface font-bold">Client Care</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="track-order" href="#">Track Indian Order</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="shipping-policy" href="#">Shipping &amp; 7-Day Returns</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="care-guide" href="#">Leather &amp; Hardware Care</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" data-path="corporate-gifting" href="#">Wedding &amp; Corporate Gifting</a>
+</div>
+</div>
+<!-- Payment Badges & Copyright -->
+<div class="pt-space-sm flex flex-col items-center gap-2 text-center">
+<div class="flex items-center justify-center gap-3 text-on-surface-variant font-label-caps text-[10px] uppercase">
+<span>UPI / GPay</span>
+<span>•</span>
+<span>NetBanking</span>
+<span>•</span>
+<span>All Cards</span>
+<span>•</span>
+<span>Cash on Delivery</span>
+</div>
+<p class="font-body-sm text-[11px] text-outline">© 2025 Ejitas Atelier Private Limited. Crafted with pride in India.</p>
+</div>
+</footer>
+</div>
+<script>
+  function addToCart(btn, itemName) {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[16px] text-tertiary-fixed">check_circle</span><span>Added to Bag</span>';
+    btn.classList.add('bg-secondary');
+    
+    // Animate cart badge in shell
+    const cartBadge = document.querySelector('button[aria-label="Shopping Bag"] span.bg-secondary');
+    if (cartBadge) {
+      let count = parseInt(cartBadge.innerText, 10) || 0;
+      cartBadge.innerText = count + 1;
+      cartBadge.classList.add('scale-125');
+      setTimeout(() => cartBadge.classList.remove('scale-125'), 300);
+    }
+
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.classList.remove('bg-secondary');
+    }, 2000);
+  }
+
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const input = e.target.querySelector('input');
+    btn.innerText = 'Coupon Code: EJITAS10';
+    btn.classList.add('bg-secondary');
+    input.value = '';
+    input.placeholder = 'Enjoy 10% off at checkout!';
+  }
+
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (icon.style.fontVariationSettings && icon.style.fontVariationSettings.includes("'FILL' 1")) {
+        icon.style.fontVariationSettings = "'FILL' 0";
+        icon.classList.remove('text-secondary');
+      } else {
+        icon.style.fontVariationSettings = "'FILL' 1";
+        icon.classList.add('text-secondary');
+      }
+    });
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(26,26,26,0.05)]" data-active-classes="text-secondary font-semibold"><div class="h-16 px-gutter flex items-center justify-around"><a aria-current="page" class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 active:scale-95 transition-all text-secondary font-semibold" data-path="home" href="#"><span class="material-symbols-outlined text-[22px]">home</span><span class="font-label-caps text-[10px] tracking-normal">Home</span></a><a class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" data-path="shop" href="#"><span class="material-symbols-outlined text-[22px]">grid_view</span><span class="font-label-caps text-[10px] tracking-normal">Shop</span></a><a class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" data-path="wishlist" href="#"><span class="material-symbols-outlined text-[22px]">favorite</span><span class="font-label-caps text-[10px] tracking-normal">Wishlist</span></a><a class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all relative" data-path="cart" href="#"><span class="material-symbols-outlined text-[22px]">shopping_bag</span><span class="font-label-caps text-[10px] tracking-normal">Cart</span><span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-secondary"></span></a><a class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 text-on-surface-variant hover:text-on-surface active:scale-95 transition-all" data-path="profile" href="#"><span class="material-symbols-outlined text-[22px]">person</span><span class="font-label-caps text-[10px] tracking-normal">Profile</span></a></div></nav></body></html>

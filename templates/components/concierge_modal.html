@@ -1,0 +1,127 @@
+<!-- Bespoke Concierge & Styling Registry Modal -->
+<div id="concierge-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+  <div class="relative w-full max-w-lg bg-surface-container-lowest rounded-3xl shadow-2xl border border-surface-variant/40 overflow-hidden flex flex-col max-h-[90vh]">
+    <!-- Modal Header -->
+    <div class="px-6 py-4 bg-surface-container-low border-b border-surface-variant/30 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img alt="Ejitas Brand Logo" class="w-10 h-10 rounded-full object-cover shadow-sm ring-1 ring-secondary/40" src="/static/images/ejitas-logo.jpg" />
+        <div>
+          <h3 class="font-headline-sm text-base text-on-surface font-semibold leading-tight">Ejitas Bespoke Concierge</h3>
+          <p class="font-body-sm text-[10px] text-secondary font-semibold uppercase tracking-wider">Fragrance of Royalty • Shaan Ventures Pvt Ltd</p>
+        </div>
+      </div>
+      <button type="button" onclick="closeConciergeModal()" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Form Body -->
+    <form id="concierge-form" onsubmit="submitConciergeModal(event)" class="px-6 py-5 flex flex-col gap-3.5 overflow-y-auto">
+      <p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+        Fill your contact details below to have your preferences registered in our Atelier database. An Ejitas personal stylist will assist you with leather care, personalized gifting, or bespoke trousseau curation.
+      </p>
+
+      <div>
+        <label class="block font-title-md text-[12px] text-on-surface mb-1 font-medium">Your Name *</label>
+        <input id="cnrg-name" required type="text" placeholder="e.g. Radhika Singhania" class="w-full px-3.5 py-2.5 rounded-xl bg-surface text-on-surface font-body-md text-sm border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block font-title-md text-[12px] text-on-surface mb-1 font-medium">Mobile / WhatsApp *</label>
+          <div class="flex rounded-xl bg-surface border border-surface-variant overflow-hidden focus-within:ring-1 focus-within:ring-secondary">
+            <span class="px-2.5 py-2.5 bg-surface-container text-on-surface font-body-md text-xs border-r border-surface-variant font-semibold">+91</span>
+            <input id="cnrg-phone" required pattern="[0-9]{10}" type="tel" placeholder="9876543210" class="w-full px-2.5 py-2.5 bg-transparent text-on-surface font-body-md text-sm focus:outline-none" />
+          </div>
+        </div>
+        <div>
+          <label class="block font-title-md text-[12px] text-on-surface mb-1 font-medium">Email Address</label>
+          <input id="cnrg-email" type="email" placeholder="radhika@example.com" class="w-full px-3.5 py-2.5 rounded-xl bg-surface text-on-surface font-body-md text-sm border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-title-md text-[12px] text-on-surface mb-1 font-medium">Occasion / Consultation Type</label>
+        <select id="cnrg-occasion" class="w-full px-3.5 py-2.5 rounded-xl bg-surface text-on-surface font-body-md text-sm border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary">
+          <option value="Bridal Trousseau Styling">Bridal Trousseau Styling</option>
+          <option value="Luxury Wedding Gifting">Luxury Wedding Gifting (Bulk / Bespoke)</option>
+          <option value="Archival Bag Consultation">Archival Bag Silhouette Consultation</option>
+          <option value="Bespoke Monogramming">Bespoke Monogramming & Custom Finish</option>
+          <option value="General Atelier Inquiry">General Atelier Inquiry</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-title-md text-[12px] text-on-surface mb-1 font-medium">Special Requests or Notes</label>
+        <textarea id="cnrg-notes" rows="2" placeholder="e.g. Looking for a vanity trunk with monogram initials for upcoming wedding in Udaipur..." class="w-full px-3.5 py-2.5 rounded-xl bg-surface text-on-surface font-body-md text-sm border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary"></textarea>
+      </div>
+
+      <div class="pt-2 flex flex-col gap-2">
+        <button id="cnrg-submit-btn" type="submit" class="w-full h-11 rounded-full bg-primary text-on-primary font-title-md text-sm flex items-center justify-center gap-2 shadow-md hover:bg-secondary active:scale-95 transition-all">
+          <span class="material-symbols-outlined text-[18px]">save</span>
+          <span id="cnrg-btn-text">Save Details in Database & Connect</span>
+        </button>
+        <p class="text-center font-body-sm text-[10px] text-on-surface-variant">
+          Your information is stored securely in the Ejitas database and will never be shared with third parties.
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openConciergeModal() {
+    const modal = document.getElementById('concierge-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
+  }
+
+  function closeConciergeModal() {
+    const modal = document.getElementById('concierge-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  }
+
+  async function submitConciergeModal(e) {
+    e.preventDefault();
+    const btn = document.getElementById('cnrg-submit-btn');
+    const btnText = document.getElementById('cnrg-btn-text');
+    btn.disabled = true;
+    btnText.innerText = 'Storing in Database...';
+
+    const payload = {
+      name: document.getElementById('cnrg-name').value.trim(),
+      phone: document.getElementById('cnrg-phone').value.trim(),
+      email: document.getElementById('cnrg-email').value.trim(),
+      occasion: document.getElementById('cnrg-occasion').value,
+      notes: document.getElementById('cnrg-notes').value.trim()
+    };
+
+    try {
+      const res = await fetch('/api/concierge/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (res.ok) {
+        Ejitas.toast('Details saved in database successfully!', 'success');
+        closeConciergeModal();
+        
+        // Open WhatsApp with prefilled message
+        const text = encodeURIComponent(`Hello Ejitas Concierge! My name is ${payload.name}. I registered for ${payload.occasion}: ${payload.notes || "I would like assistance with luxury bag curation."}`);
+        window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+      } else {
+        alert(data.detail || 'Could not record inquiry.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error recording inquiry.');
+    } finally {
+      btn.disabled = false;
+      btnText.innerText = 'Save Details in Database & Connect';
+    }
+  }
+</script>

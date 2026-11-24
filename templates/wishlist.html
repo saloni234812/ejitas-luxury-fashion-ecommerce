@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Your Saved Wishlist | Ejitas{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full max-w-4xl mx-auto px-margin py-space-sm pb-24">
+  <div class="flex items-center justify-between py-space-xs border-b border-surface-variant/40 mb-space-md">
+    <div class="flex items-baseline gap-space-xs">
+      <h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Your Saved Wishlist</h1>
+    </div>
+    <a href="/shop" class="text-secondary font-title-md hover:underline flex items-center gap-1">
+      <span class="material-symbols-outlined text-[18px]">grid_view</span>
+      <span>Browse All</span>
+    </a>
+  </div>
+
+  <div id="wishlist-empty" class="hidden flex-col items-center justify-center text-center py-16 gap-3">
+    <div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+      <span class="material-symbols-outlined text-4xl">favorite_border</span>
+    </div>
+    <h2 class="font-headline-sm text-on-surface">No Saved Creations Yet</h2>
+    <p class="font-body-sm text-on-surface-variant max-w-sm">
+      Tap the heart icon on any vanity trunk or sling to save your favorites for later.
+    </p>
+    <a href="/shop" class="mt-3 px-8 py-3 rounded-full bg-primary text-on-primary font-title-md shadow-md">
+      Explore Collection
+    </a>
+  </div>
+
+  <div id="wishlist-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-space-sm">
+    <!-- Rendered by JavaScript -->
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  async function loadWishlist() {
+    try {
+      const res = await fetch(`/api/wishlist?session_id=${Ejitas.getSessionId()}`);
+      const items = await res.json();
+      const emptyEl = document.getElementById('wishlist-empty');
+      const grid = document.getElementById('wishlist-grid');
+
+      if (!items || items.length === 0) {
+        emptyEl.classList.remove('hidden');
+        emptyEl.classList.add('flex');
+        grid.innerHTML = '';
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      emptyEl.classList.remove('flex');
+
+      grid.innerHTML = items.map(p => `
+        <article class="group flex flex-col bg-surface-container-lowest rounded-xl p-space-xs shadow-sm hover:shadow-md transition-shadow relative border border-surface-variant/30">
+          <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+            <a href="/product/${p.slug}">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.images[0]}" alt="${p.name}"/>
+            </a>
+            <button aria-label="Remove from wishlist" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-secondary flex items-center justify-center active:scale-90 shadow-sm" onclick="removeWishlistItem(${p.id})">
+              <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            </button>
+            <button aria-label="Add to bag" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md active:scale-90" onclick="Ejitas.addToBag(${p.id})">
+              <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+            </button>
+          </div>
+          <div class="flex flex-col pt-space-xs gap-1">
+            <a href="/product/${p.slug}">
+              <h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1 leading-snug group-hover:text-secondary transition-colors">${p.name}</h2>
+            </a>
+            <span class="font-body-sm text-on-surface-variant text-[12px] truncate">${p.category}</span>
+            <span class="font-currency-price text-on-surface font-bold pt-0.5">₹${p.price.toLocaleString('en-IN')}</span>
+          </div>
+        </article>
+      `).join('');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function removeWishlistItem(productId) {
+    await Ejitas.toggleWishlist(productId);
+    loadWishlist();
+  }
+
+  document.addEventListener('DOMContentLoaded', loadWishlist);
+</script>
+{% endblock %}

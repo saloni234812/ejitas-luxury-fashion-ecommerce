@@ -1,0 +1,69 @@
+<!-- Mobile Drawer Navigation -->
+<div class="fixed inset-0 z-50 -translate-x-full transition-transform duration-300 ease-in-out pointer-events-none" id="mobile-drawer">
+  <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="Ejitas.closeMobileMenu()"></div>
+  <div class="relative w-4/5 max-w-sm h-full bg-surface-bright flex flex-col justify-between pt-safe pb-safe shadow-[0_8px_30px_rgba(92,85,78,0.12)]">
+    <div class="flex flex-col overflow-y-auto px-gutter py-space-md">
+      <div class="flex items-center justify-between pb-space-md border-b border-surface-variant/40">
+        <div class="flex items-center gap-3">
+          <img alt="Ejitas Brand Logo" class="h-11 w-11 rounded-full object-cover shadow-md ring-1 ring-secondary/50" src="/static/images/ejitas-logo.jpg"/>
+          <div class="flex flex-col">
+            <span class="font-headline-sm text-[21px] text-on-surface leading-tight font-semibold">Ejitas</span>
+            <span class="text-label-caps text-secondary font-bold text-[8.5px] uppercase tracking-wider">Fragrance of Royalty</span>
+          </div>
+        </div>
+        <button class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="Ejitas.closeMobileMenu()" type="button">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-space-xs mt-space-sm">
+        <a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary transition-colors" href="/">
+          <span>Home</span>
+          <span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span>
+        </a>
+        
+        <details class="group" open>
+          <summary class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary cursor-pointer">
+            <span>Shop Collection</span>
+            <span class="material-symbols-outlined text-[18px] text-outline group-open:rotate-90 transition-transform">chevron_right</span>
+          </summary>
+          <div class="pl-gutter py-space-xs flex flex-col gap-space-xs text-on-surface-variant font-body-md text-body-md">
+            <a class="py-1 hover:text-on-surface transition-colors" href="/shop">All Creations (24)</a>
+            <a class="py-1 hover:text-on-surface transition-colors" href="/shop?category=vanity">Vanity Cases & Trunks</a>
+            <a class="py-1 hover:text-on-surface transition-colors" href="/shop?category=sling">Sling & Crossbody</a>
+            <a class="py-1 hover:text-on-surface transition-colors" href="/shop?category=totes">Artisanal Totes</a>
+            <a class="py-1 hover:text-on-surface transition-colors" href="/shop?category=organisers">Compartment Organisers</a>
+            <a class="py-1 hover:text-on-surface transition-colors" href="/shop?category=jewelry">Jewellery Boxes</a>
+          </div>
+        </details>
+
+        <a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" href="/shop?sort=newest">
+          <span>New Arrivals</span>
+          <span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span>
+        </a>
+        <a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" href="/shop?sort=bestseller">
+          <span>Bestsellers</span>
+          <span class="material-symbols-outlined text-[18px] text-outline">chevron_right</span>
+        </a>
+        <a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" href="/cart">
+          <span>Shopping Bag</span>
+          <span class="material-symbols-outlined text-[18px] text-outline">shopping_bag</span>
+        </a>
+        <a class="flex items-center justify-between py-space-sm font-title-lg text-title-lg text-on-surface hover:text-secondary" href="/wishlist">
+          <span>Wishlist</span>
+          <span class="material-symbols-outlined text-[18px] text-outline">favorite</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="p-gutter bg-surface-container-low flex flex-col gap-space-sm">
+      <button type="button" onclick="Ejitas.closeMobileMenu(); openConciergeModal();" class="flex items-center justify-center gap-space-xs w-full py-3 rounded-full bg-primary text-on-primary font-title-md text-title-md shadow-md active:scale-95 transition-transform hover:bg-secondary">
+        <span class="material-symbols-outlined text-[18px] text-emerald-400">chat</span>
+        <span>WhatsApp Concierge</span>
+      </button>
+      <div class="text-center text-on-surface-variant font-body-sm text-body-sm">
+        Bespoke Indian Vanity Luxury • Pan-India Free Express Shipping
+      </div>
+    </div>
+  </div>
+</div>

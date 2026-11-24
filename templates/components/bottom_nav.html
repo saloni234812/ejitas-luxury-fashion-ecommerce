@@ -1,0 +1,25 @@
+<!-- Fixed Bottom Mobile Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-40 pb-safe bg-surface/95 backdrop-blur-xl border-t border-surface-variant/40 shadow-[0_-4px_24px_rgba(26,26,26,0.05)] sm:hidden">
+  <div class="h-16 px-gutter flex items-center justify-around">
+    <a href="/" class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 active:scale-95 transition-all {% if active_page == 'home' %}text-secondary font-semibold{% else %}text-on-surface-variant hover:text-on-surface{% endif %}">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="font-label-caps text-[10px] tracking-normal">Home</span>
+    </a>
+
+    <a href="/shop" class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 active:scale-95 transition-all {% if active_page == 'shop' %}text-secondary font-semibold{% else %}text-on-surface-variant hover:text-on-surface{% endif %}">
+      <span class="material-symbols-outlined text-[22px]">grid_view</span>
+      <span class="font-label-caps text-[10px] tracking-normal">Shop</span>
+    </a>
+
+    <a href="/wishlist" class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 active:scale-95 transition-all {% if active_page == 'wishlist' %}text-secondary font-semibold{% else %}text-on-surface-variant hover:text-on-surface{% endif %}">
+      <span class="material-symbols-outlined text-[22px]">favorite</span>
+      <span class="font-label-caps text-[10px] tracking-normal">Wishlist</span>
+    </a>
+
+    <a href="/cart" class="flex flex-col items-center justify-center w-14 h-12 gap-0.5 active:scale-95 transition-all relative {% if active_page == 'cart' %}text-secondary font-semibold{% else %}text-on-surface-variant hover:text-on-surface{% endif %}">
+      <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+      <span class="font-label-caps text-[10px] tracking-normal">Bag</span>
+      <span class="ejitas-cart-badge absolute top-1 right-2 w-4 h-4 rounded-full bg-secondary text-on-secondary font-label-caps text-[8px] flex items-center justify-center font-bold hidden">0</span>
+    </a>
+  </div>
+</nav>

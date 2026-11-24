@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}Bespoke Encrypted Checkout | Ejitas{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full pb-28 max-w-2xl mx-auto">
+  <!-- Brand Checkout Security Sub-Header -->
+  <section class="px-margin pt-space-xs pb-space-sm bg-surface-container-low flex items-center justify-between shadow-xs border-b border-surface-variant/40">
+    <div class="flex items-center gap-2">
+      <img alt="Ejitas India Logo" class="h-7 w-7 rounded-full object-cover shadow-xs ring-1 ring-secondary/30" src="/static/images/ejitas-logo.jpg"/>
+      <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+      <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest font-semibold">Bespoke Checkout</span>
+    </div>
+    <div class="flex items-center gap-1 bg-surface-container px-space-xs py-1 rounded-full text-secondary">
+      <span class="material-symbols-outlined text-[14px]">lock</span>
+      <span class="font-label-caps text-[9px] uppercase tracking-wider font-bold">256-bit Encrypted</span>
+    </div>
+  </section>
+
+  <!-- Checkout Stepper -->
+  <div class="px-margin py-space-sm bg-surface flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-body-sm text-[11px] font-semibold">1</span>
+      <span class="font-title-md text-title-md text-primary font-semibold">Contact & Address</span>
+    </div>
+    <div class="w-8 h-0.5 bg-surface-variant rounded-full"></div>
+    <div class="flex items-center gap-1.5">
+      <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-body-sm text-[11px] font-semibold">2</span>
+      <span class="font-title-md text-title-md text-primary font-semibold">Payment</span>
+    </div>
+    <div class="w-8 h-0.5 bg-surface-variant rounded-full"></div>
+    <div class="flex items-center gap-1.5 opacity-60">
+      <span class="w-5 h-5 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-body-sm text-[10px]">3</span>
+      <span class="font-body-sm text-body-sm text-on-surface-variant">Confirmed</span>
+    </div>
+  </div>
+
+  <!-- Collapsible Order Summary Accordion -->
+  <div class="mx-margin mt-space-xs rounded-xl bg-surface-container-low shadow-xs border border-surface-variant/40 overflow-hidden">
+    <button class="w-full px-space-md py-space-sm flex items-center justify-between text-left active:bg-surface-variant/40 transition-colors" onclick="toggleOrderSummary()" type="button">
+      <div class="flex items-center gap-space-xs">
+        <span class="material-symbols-outlined text-secondary text-[20px]">shopping_bag</span>
+        <div>
+          <p class="font-title-md text-title-md text-on-surface">Order Total: <span id="checkout-summary-total" class="text-primary font-currency-price font-bold">Loading...</span></p>
+          <p id="checkout-summary-count" class="font-body-sm text-[11px] text-on-surface-variant">Handcrafted vanity essentials</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1 text-secondary font-body-sm text-body-sm font-medium">
+        <span id="summary-toggle-label">View Details</span>
+        <span class="material-symbols-outlined text-[18px] transition-transform duration-300" id="summary-chevron">expand_more</span>
+      </div>
+    </button>
+    
+    <div class="hidden px-space-md pb-space-md pt-space-xs bg-surface-container-lowest border-t border-surface-variant/30" id="checkout-summary-drawer">
+      <div id="checkout-drawer-items" class="flex flex-col divide-y divide-surface-variant/30 max-h-60 overflow-y-auto">
+        <!-- Rendered by JS -->
+      </div>
+      
+      <div class="mt-space-sm pt-space-xs flex flex-col gap-1.5 bg-surface-container-low p-space-sm rounded-lg text-body-sm">
+        <div class="flex justify-between text-on-surface-variant">
+          <span>Subtotal</span>
+          <span id="chk-subtotal">₹0</span>
+        </div>
+        <div id="chk-discount-row" class="justify-between text-secondary hidden">
+          <span>Privilege Discount</span>
+          <span id="chk-discount">-₹0</span>
+        </div>
+        <div class="flex justify-between text-secondary">
+          <span>Pan-India Insured Express Delivery</span>
+          <span class="uppercase tracking-wider font-semibold text-[10px]">Complimentary</span>
+        </div>
+        <div class="flex justify-between font-title-md text-on-surface pt-1 border-t border-surface-variant/40">
+          <span>Net Payable</span>
+          <span id="chk-net-total" class="font-currency-price text-primary font-bold">₹0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Form -->
+  <form id="checkout-form" onsubmit="submitCheckout(event)" class="px-margin flex flex-col gap-space-md mt-space-md">
+    <!-- Contact Info Card -->
+    <div class="bg-surface-container-lowest p-space-md rounded-2xl border border-surface-variant/40 shadow-xs flex flex-col gap-3">
+      <h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary text-[20px]">person</span>
+        <span>Contact Information</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block font-title-md text-body-sm mb-1 text-on-surface">Full Name *</label>
+          <input id="chk-name" required type="text" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="e.g. Radhika Sharma"/>
+        </div>
+        <div>
+          <label class="block font-title-md text-body-sm mb-1 text-on-surface">Mobile Number *</label>
+          <div class="flex rounded-xl bg-surface border border-surface-variant overflow-hidden focus-within:ring-1 focus-within:ring-secondary">
+            <span class="px-3 py-2.5 bg-surface-container text-on-surface font-body-md border-r border-surface-variant">+91</span>
+            <input id="chk-phone" required type="tel" pattern="[0-9]{10}" class="w-full px-3 py-2.5 bg-transparent text-on-surface font-body-md focus:outline-none" placeholder="9876543210"/>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="block font-title-md text-body-sm mb-1 text-on-surface">Email Address (for order tracking & receipt) *</label>
+        <input id="chk-email" required type="email" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="radhika@example.com"/>
+      </div>
+    </div>
+
+    <!-- Shipping Address Card -->
+    <div class="bg-surface-container-lowest p-space-md rounded-2xl border border-surface-variant/40 shadow-xs flex flex-col gap-3">
+      <h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary text-[20px]">local_shipping</span>
+        <span>Delivery Address in India</span>
+      </h2>
+      <div>
+        <label class="block font-title-md text-body-sm mb-1 text-on-surface">House / Flat / Suite & Building *</label>
+        <input id="chk-address1" required type="text" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="e.g. Villa 14, Silver Oak Estates"/>
+      </div>
+      <div>
+        <label class="block font-title-md text-body-sm mb-1 text-on-surface">Street & Area Name</label>
+        <input id="chk-address2" type="text" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="e.g. Bandra West, Off Carter Road"/>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
+          <label class="block font-title-md text-body-sm mb-1 text-on-surface">PIN Code *</label>
+          <input id="chk-pin" required pattern="[0-9]{6}" type="text" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="400050"/>
+        </div>
+        <div>
+          <label class="block font-title-md text-body-sm mb-1 text-on-surface">City *</label>
+          <input id="chk-city" required type="text" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Mumbai"/>
+        </div>
+        <div>
+          <label class="block font-title-md text-body-sm mb-1 text-on-surface">State *</label>
+          <select id="chk-state" required class="w-full px-3 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none">
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Delhi">Delhi NCR</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="West Bengal">West Bengal</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Other">Other State</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="block font-title-md text-body-sm mb-1 text-on-surface">Delivery Special Instructions (Optional)</label>
+        <input id="chk-notes" type="text" class="w-full px-4 py-2.5 rounded-xl bg-surface text-on-surface font-body-md border border-surface-variant focus:outline-none" placeholder="e.g. Call before delivery, bridal gift wrap requested"/>
+      </div>
+    </div>
+
+    <!-- Payment Method Selector Card -->
+    <div class="bg-surface-container-lowest p-space-md rounded-2xl border border-surface-variant/40 shadow-xs flex flex-col gap-3">
+      <h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+        <span class="material-symbols-outlined text-secondary text-[20px]">account_balance_wallet</span>
+        <span>Payment Method</span>
+      </h2>
+
+      <div class="grid grid-cols-1 gap-2">
+        <!-- UPI Option -->
+        <label class="flex items-center justify-between p-3.5 rounded-xl border border-secondary bg-secondary-fixed/20 cursor-pointer payment-option-card">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="payment_method" value="UPI" checked onchange="handlePaymentChange(this.value)" class="accent-secondary w-4 h-4"/>
+            <div>
+              <p class="font-title-md text-on-surface font-semibold">UPI (Google Pay / PhonePe / Paytm / BHIM)</p>
+              <p class="font-body-sm text-[11px] text-on-surface-variant">Instant, seamless mobile payment with 0% extra fee</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-secondary text-[22px]">qr_code_2</span>
+        </label>
+
+        <!-- Credit/Debit Card Option -->
+        <label class="flex items-center justify-between p-3.5 rounded-xl border border-surface-variant bg-surface hover:bg-surface-container-low cursor-pointer payment-option-card">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="payment_method" value="Card" onchange="handlePaymentChange(this.value)" class="accent-secondary w-4 h-4"/>
+            <div>
+              <p class="font-title-md text-on-surface font-semibold">Credit or Debit Card</p>
+              <p class="font-body-sm text-[11px] text-on-surface-variant">Visa, Mastercard, RuPay, American Express</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-[22px]">credit_card</span>
+        </label>
+
+        <!-- Netbanking Option -->
+        <label class="flex items-center justify-between p-3.5 rounded-xl border border-surface-variant bg-surface hover:bg-surface-container-low cursor-pointer payment-option-card">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="payment_method" value="Netbanking" onchange="handlePaymentChange(this.value)" class="accent-secondary w-4 h-4"/>
+            <div>
+              <p class="font-title-md text-on-surface font-semibold">Net Banking</p>
+              <p class="font-body-sm text-[11px] text-on-surface-variant">All major Indian banks (HDFC, ICICI, SBI, Axis)</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-[22px]">account_balance</span>
+        </label>
+
+        <!-- Cash on Delivery Option -->
+        <label class="flex items-center justify-between p-3.5 rounded-xl border border-surface-variant bg-surface hover:bg-surface-container-low cursor-pointer payment-option-card">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="payment_method" value="Cash on Delivery (COD)" onchange="handlePaymentChange(this.value)" class="accent-secondary w-4 h-4"/>
+            <div>
+              <p class="font-title-md text-on-surface font-semibold">Cash on Delivery (COD)</p>
+              <p class="font-body-sm text-[11px] text-on-surface-variant">Pay with cash or UPI at your doorstep upon arrival</p>
+            </div>
+          </div>
+          <span class="material-symbols-outlined text-on-surface-variant text-[22px]">payments</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Place Order Action -->
+    <div class="pt-2 flex flex-col gap-2">
+      <button id="place-order-btn" type="submit" class="w-full h-[54px] rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all hover:bg-secondary">
+        <span class="material-symbols-outlined text-[20px]">lock</span>
+        <span id="place-order-text">Pay & Place Order</span>
+      </button>
+      <p class="text-center font-body-sm text-[11px] text-on-surface-variant">
+        By placing your order, you agree to Ejitas's Terms of Service and 7-day complimentary return guarantee.
+      </p>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  let checkoutCartData = null;
+
+  async function loadCheckoutData() {
+    try {
+      const res = await fetch(`/api/cart?session_id=${Ejitas.getSessionId()}`);
+      checkoutCartData = await res.json();
+      
+      if (!checkoutCartData.items || checkoutCartData.items.length === 0) {
+        Ejitas.toast('Your shopping bag is empty', 'info');
+        setTimeout(() => window.location.href = '/shop', 1200);
+        return;
+      }
+
+      document.getElementById('checkout-summary-total').innerText = `₹${checkoutCartData.subtotal.toLocaleString('en-IN')}`;
+      document.getElementById('checkout-summary-count').innerText = `${checkoutCartData.items_count} handcrafted items`;
+      document.getElementById('chk-subtotal').innerText = `₹${checkoutCartData.subtotal.toLocaleString('en-IN')}`;
+      
+      // Check coupon from localStorage
+      const savedCoupon = localStorage.getItem('ejitas_coupon_code');
+      let discountAmt = 0;
+      if (savedCoupon) {
+        const cRes = await fetch('/api/coupons/apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: savedCoupon, cart_total: checkoutCartData.subtotal })
+        });
+        const cData = await cRes.json();
+        if (cData.valid) {
+          discountAmt = cData.discount_amount;
+          const discRow = document.getElementById('chk-discount-row');
+          discRow.classList.remove('hidden');
+          discRow.classList.add('flex');
+          document.getElementById('chk-discount').innerText = `-₹${discountAmt.toLocaleString('en-IN')}`;
+        }
+      }
+
+      const net = Math.max(0, checkoutCartData.subtotal - discountAmt + checkoutCartData.shipping_fee);
+      document.getElementById('chk-net-total').innerText = `₹${net.toLocaleString('en-IN')}`;
+      document.getElementById('place-order-text').innerText = `Pay ₹${net.toLocaleString('en-IN')} & Confirm Order`;
+
+      // Render items in summary accordion
+      const itemsContainer = document.getElementById('checkout-drawer-items');
+      itemsContainer.innerHTML = checkoutCartData.items.map(item => `
+        <div class="flex gap-3 py-2 items-center">
+          <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded-lg bg-surface-container" />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-title-md text-[13px] text-on-surface truncate font-semibold">${item.name}</h4>
+            <p class="font-body-sm text-[11px] text-on-surface-variant">Qty: ${item.quantity} • ${item.color || 'Classic Atelier'}</p>
+          </div>
+          <span class="font-currency-price text-[13px] text-primary font-bold">₹${item.item_total.toLocaleString('en-IN')}</span>
+        </div>
+      `).join('');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function toggleOrderSummary() {
+    const drawer = document.getElementById('checkout-summary-drawer');
+    const chevron = document.getElementById('summary-chevron');
+    const label = document.getElementById('summary-toggle-label');
+    drawer.classList.toggle('hidden');
+    if (drawer.classList.contains('hidden')) {
+      chevron.style.transform = 'rotate(0deg)';
+      label.innerText = 'View Details';
+    } else {
+      chevron.style.transform = 'rotate(180deg)';
+      label.innerText = 'Hide Details';
+    }
+  }
+
+  function handlePaymentChange(val) {
+    document.querySelectorAll('.payment-option-card').forEach(card => {
+      card.classList.remove('border-secondary', 'bg-secondary-fixed/20');
+      card.classList.add('border-surface-variant', 'bg-surface');
+    });
+    const selectedInput = document.querySelector(`input[name="payment_method"][value="${val}"]`);
+    if (selectedInput) {
+      const card = selectedInput.closest('.payment-option-card');
+      card.classList.add('border-secondary', 'bg-secondary-fixed/20');
+      card.classList.remove('border-surface-variant', 'bg-surface');
+    }
+  }
+
+  async function submitCheckout(e) {
+    e.preventDefault();
+    const btn = document.getElementById('place-order-btn');
+    const btnText = document.getElementById('place-order-text');
+    btn.disabled = true;
+    btnText.innerText = 'Securing Bespoke Order...';
+
+    const selectedPayment = document.querySelector('input[name="payment_method"]:checked').value;
+    const payload = {
+      session_id: Ejitas.getSessionId(),
+      customer_name: document.getElementById('chk-name').value.trim(),
+      customer_phone: document.getElementById('chk-phone').value.trim(),
+      customer_email: document.getElementById('chk-email').value.trim(),
+      address_line1: document.getElementById('chk-address1').value.trim(),
+      address_line2: document.getElementById('chk-address2').value.trim(),
+      city: document.getElementById('chk-city').value.trim(),
+      state: document.getElementById('chk-state').value,
+      postal_code: document.getElementById('chk-pin').value.trim(),
+      payment_method: selectedPayment,
+      coupon_code: localStorage.getItem('ejitas_coupon_code') || '',
+      notes: document.getElementById('chk-notes').value.trim()
+    };
+
+    try {
+      const res = await fetch('/api/orders/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        alert(err.detail || 'Could not place order');
+        btn.disabled = false;
+        btnText.innerText = 'Try Again';
+        return;
+      }
+
+      const order = await res.json();
+      localStorage.removeItem('ejitas_coupon_code');
+      Ejitas.syncCart();
+      window.location.href = `/order-success/${order.order_number}`;
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred during checkout.');
+      btn.disabled = false;
+      btnText.innerText = 'Pay & Place Order';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadCheckoutData);
+</script>
+{% endblock %}

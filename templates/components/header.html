@@ -1,0 +1,178 @@
+<!-- Global Header -->
+<header class="fixed top-0 w-full z-40 pt-safe">
+  <!-- Top Notification / Announcement Bar with Bags Dropdown -->
+  <div class="bg-tertiary-container text-tertiary-fixed min-h-[30px] py-1 px-gutter flex items-center justify-between text-xs relative z-50">
+    <div class="hidden sm:flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+      <span class="font-label-caps text-[10px] tracking-widest uppercase opacity-90">Bespoke Indian Luxury</span>
+    </div>
+    
+    <div class="flex items-center justify-center flex-1 text-center px-2">
+      <p class="font-label-caps text-label-caps uppercase tracking-widest truncate">
+        Free shipping across India on orders above ₹1,499 | Easy 7-day returns
+      </p>
+    </div>
+
+    <!-- Notification Bar Dropdown of the Bags -->
+    <div class="relative group">
+      <button type="button" class="flex items-center gap-1 font-label-caps text-[10px] uppercase tracking-wider text-tertiary-fixed hover:text-white px-2.5 py-1 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-all border border-amber-500/30 cursor-pointer">
+        <span class="material-symbols-outlined text-[13px]">shopping_bag</span>
+        <span>Bags & Vanity</span>
+        <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+      </button>
+
+      <!-- Dropdown Menu in Notification Bar -->
+      <div class="absolute right-0 top-full mt-1.5 w-72 bg-surface-bright text-on-surface rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.22)] border border-surface-variant/60 py-3 hidden group-hover:block hover:block transition-all z-50">
+        <div class="px-4 pb-2 mb-2 border-b border-surface-variant/40 flex items-center justify-between">
+          <span class="font-label-caps text-[10px] uppercase tracking-wider text-secondary font-bold">Luxury Bags Collection</span>
+          <a href="/shop" class="text-[11px] text-on-surface-variant hover:text-secondary underline font-medium">View All (16)</a>
+        </div>
+        <div class="flex flex-col py-1 text-sm font-medium">
+          <a href="/shop?category=vanity" class="px-4 py-2 hover:bg-surface-container flex items-center justify-between text-on-surface hover:text-secondary transition-colors">
+            <span class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[18px] text-secondary">luggage</span>
+              <span>Vanity Cases & Trunks</span>
+            </span>
+            <span class="text-xs text-outline font-normal">5 pieces</span>
+          </a>
+          <a href="/shop?category=sling" class="px-4 py-2 hover:bg-surface-container flex items-center justify-between text-on-surface hover:text-secondary transition-colors">
+            <span class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[18px] text-secondary">shopping_bag</span>
+              <span>Sling & Crossbody Bags</span>
+            </span>
+            <span class="text-xs text-outline font-normal">6 pieces</span>
+          </a>
+          <a href="/shop?category=totes" class="px-4 py-2 hover:bg-surface-container flex items-center justify-between text-on-surface hover:text-secondary transition-colors">
+            <span class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[18px] text-secondary">work</span>
+              <span>Artisanal Totes</span>
+            </span>
+            <span class="text-xs text-outline font-normal">2 pieces</span>
+          </a>
+          <a href="/shop?category=organisers" class="px-4 py-2 hover:bg-surface-container flex items-center justify-between text-on-surface hover:text-secondary transition-colors">
+            <span class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[18px] text-secondary">category</span>
+              <span>Compartment Organisers</span>
+            </span>
+            <span class="text-xs text-outline font-normal">2 pieces</span>
+          </a>
+          <a href="/shop?category=jewelry" class="px-4 py-2 hover:bg-surface-container flex items-center justify-between text-on-surface hover:text-secondary transition-colors">
+            <span class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[18px] text-secondary">diamond</span>
+              <span>Jewellery Boxes</span>
+            </span>
+            <span class="text-xs text-outline font-normal">1 piece</span>
+          </a>
+        </div>
+        <div class="px-4 pt-2 mt-2 border-t border-surface-variant/40 bg-surface-container-low/50 flex items-center justify-between">
+          <a href="/shop?sort=bestseller" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-1">
+            <span>Explore Bestselling Bags</span>
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <div class="h-16 px-gutter bg-surface/90 backdrop-blur-xl flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-variant/30">
+    <div class="flex items-center gap-space-xs">
+      <button aria-label="Open Menu" class="w-11 h-11 flex items-center justify-center text-on-surface active:scale-95 transition-transform" onclick="Ejitas.openMobileMenu()" type="button">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+      </button>
+      <a href="/" class="flex items-center gap-3 group">
+        <img alt="Ejitas Brand Logo" class="h-11 w-11 sm:h-12 sm:w-12 rounded-full object-cover shadow-md ring-1 ring-secondary/50 transition-transform group-hover:scale-105" src="/static/images/ejitas-logo.jpg"/>
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-[21px] font-semibold tracking-tight text-on-surface leading-tight">Ejitas</span>
+          <span class="font-label-caps text-[8.5px] uppercase tracking-widest text-secondary font-bold -mt-0.5">Fragrance of Royalty</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation with Bags Dropdown -->
+    <nav class="hidden md:flex items-center gap-7 text-on-surface font-title-md text-[14px] tracking-wide">
+      <!-- Bags & Vanity Dropdown -->
+      <div class="relative group py-2">
+        <a href="/shop" class="flex items-center gap-1 hover:text-secondary font-medium transition-colors py-1">
+          <span>Bags & Vanity</span>
+          <span class="material-symbols-outlined text-[16px] text-outline group-hover:rotate-180 transition-transform duration-200">expand_more</span>
+        </a>
+        <!-- Mega Dropdown Menu -->
+        <div class="absolute left-0 top-full mt-1 w-80 bg-surface-bright rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.14)] border border-surface-variant/40 p-4 hidden group-hover:block hover:block transition-all z-50">
+          <div class="flex flex-col gap-1">
+            <span class="font-label-caps text-[10px] uppercase tracking-wider text-secondary font-bold px-2 mb-1">Bags Collection</span>
+            <a href="/shop?category=vanity" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-[20px] text-secondary">luggage</span>
+              <div class="flex flex-col">
+                <span class="font-medium text-sm">Vanity Cases & Trunks</span>
+                <span class="text-[11px] text-on-surface-variant">Signature heirloom trunks</span>
+              </div>
+            </a>
+            <a href="/shop?category=sling" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-[20px] text-secondary">shopping_bag</span>
+              <div class="flex flex-col">
+                <span class="font-medium text-sm">Sling & Crossbody</span>
+                <span class="text-[11px] text-on-surface-variant">Gucci & heritage inspired silhouettes</span>
+              </div>
+            </a>
+            <a href="/shop?category=totes" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-[20px] text-secondary">work</span>
+              <div class="flex flex-col">
+                <span class="font-medium text-sm">Artisanal Totes</span>
+                <span class="text-[11px] text-on-surface-variant">Structured commute organizers</span>
+              </div>
+            </a>
+            <a href="/shop?category=organisers" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-[20px] text-secondary">category</span>
+              <div class="flex flex-col">
+                <span class="font-medium text-sm">Compartment Organisers</span>
+                <span class="text-[11px] text-on-surface-variant">Travel vanity inserts</span>
+              </div>
+            </a>
+            <a href="/shop?category=jewelry" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-surface-container text-on-surface hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-[20px] text-secondary">diamond</span>
+              <div class="flex flex-col">
+                <span class="font-medium text-sm">Jewellery Boxes</span>
+                <span class="text-[11px] text-on-surface-variant">Anti-tarnish velvet pods</span>
+              </div>
+            </a>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-surface-variant/40 flex items-center justify-between px-2">
+            <a href="/shop" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-1">
+              <span>View All 16 Bags</span>
+              <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+            </a>
+            <a href="/shop?sort=newest" class="text-xs text-on-surface-variant hover:text-secondary">New Arrivals</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/shop?sort=newest" class="hover:text-secondary font-medium transition-colors">New Arrivals</a>
+      <a href="/shop?sort=bestseller" class="hover:text-secondary font-medium transition-colors">Bestsellers</a>
+      <button type="button" onclick="openConciergeModal()" class="hover:text-secondary font-medium transition-colors flex items-center gap-1 cursor-pointer">
+        <span class="material-symbols-outlined text-[16px] text-emerald-600">chat</span>
+        <span>Concierge</span>
+      </button>
+    </nav>
+    
+    <div class="flex items-center gap-space-2xs">
+      <!-- Search Button -->
+      <button aria-label="Search Catalog" onclick="openSearchModal()" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary active:scale-95 transition-all" type="button">
+        <span class="material-symbols-outlined text-[22px]">search</span>
+      </button>
+      <!-- Wishlist Link -->
+      <a aria-label="Saved Wishlist" href="/wishlist" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary active:scale-95 transition-all">
+        <span class="material-symbols-outlined text-[22px]">favorite</span>
+      </a>
+      <!-- Cart Drawer Trigger -->
+      <button aria-label="Shopping Bag" onclick="Ejitas.openCartDrawer()" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary relative active:scale-95 transition-all" type="button">
+        <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+        <span class="ejitas-cart-badge absolute top-2 right-2 min-w-[16px] h-4 px-1 rounded-full bg-secondary text-on-secondary font-label-caps text-[9px] flex items-center justify-center font-bold hidden">0</span>
+      </button>
+      <!-- Profile Avatar -->
+      <a href="/shop" class="w-8 h-8 rounded-full overflow-hidden ml-space-2xs ring-1 ring-surface-variant hover:opacity-90">
+        <img alt="Atelier Profile" class="w-8 h-8 rounded-full object-cover" src="/static/images/ejitas-logo.jpg"/>
+      </a>
+    </div>
+  </div>
+</header>

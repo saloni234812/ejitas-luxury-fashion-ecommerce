@@ -1,0 +1,57 @@
+<!-- Slide-Over Shopping Bag Drawer -->
+<div class="fixed inset-0 z-50 translate-x-full transition-transform duration-300 ease-in-out pointer-events-none" id="cart-drawer">
+  <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="Ejitas.closeCartDrawer()"></div>
+  <div class="absolute right-0 w-5/6 max-w-md h-full bg-surface-bright flex flex-col justify-between pt-safe pb-safe shadow-[0_8px_30px_rgba(92,85,78,0.12)]">
+    <!-- Drawer Header -->
+    <div class="p-gutter flex items-center justify-between border-b border-surface-variant/40">
+      <div class="flex items-center gap-2">
+        <span class="font-headline-sm text-headline-sm text-on-surface">Your Bag</span>
+        <span id="drawer-cart-count" class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-caps text-label-caps font-bold">
+          0 Items
+        </span>
+      </div>
+      <button class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-on-surface active:scale-90 transition-transform" onclick="Ejitas.closeCartDrawer()" type="button">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Scrollable Items Area -->
+    <div class="flex-1 px-gutter overflow-y-auto">
+      <!-- Empty State -->
+      <div id="drawer-cart-empty" class="h-full flex flex-col items-center justify-center text-center gap-space-sm py-12">
+        <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+          <span class="material-symbols-outlined text-3xl">shopping_bag</span>
+        </div>
+        <p class="font-headline-sm text-headline-sm text-on-surface">Your Bag is Empty</p>
+        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">Explore our curated collection of vanity trunks, slings, and organizers.</p>
+        <a href="/shop" onclick="Ejitas.closeCartDrawer()" class="mt-2 px-6 py-2.5 rounded-full bg-primary text-on-primary font-title-md text-title-md shadow-sm">
+          Discover Collection
+        </a>
+      </div>
+
+      <!-- Item List Container -->
+      <div id="drawer-cart-items" class="flex flex-col divide-y divide-surface-variant/40 hidden">
+        <!-- Rendered by Ejitas.renderCartDrawer() in app.js -->
+      </div>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div id="drawer-cart-footer" class="p-gutter bg-surface-container-low flex flex-col gap-space-sm border-t border-surface-variant/40">
+      <div class="flex items-center justify-between font-title-lg text-title-lg">
+        <span class="text-on-surface-variant font-normal">Estimated Subtotal</span>
+        <span id="drawer-cart-total" class="font-currency-price text-currency-price text-on-surface font-bold">₹0</span>
+      </div>
+      <p class="font-body-sm text-[11px] text-secondary">
+        ✨ Free Pan-India Express shipping on orders above ₹1,499
+      </p>
+      <div class="flex flex-col gap-2 pt-1">
+        <a class="w-full h-[50px] rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center active:scale-95 transition-transform shadow-md" href="/checkout">
+          Proceed to Checkout
+        </a>
+        <a class="w-full h-[44px] rounded-full bg-surface-container-highest text-on-surface font-title-md text-title-md flex items-center justify-center active:scale-95 transition-transform" href="/cart">
+          View Shopping Bag
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

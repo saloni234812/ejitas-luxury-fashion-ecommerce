@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}Ejitas | Bespoke Indian Luxury Vanity Cases & Handcrafted Bags{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+  <!-- Hero Section -->
+  <section class="relative w-full px-gutter pt-space-xs pb-space-lg">
+    <div class="relative w-full rounded-2xl overflow-hidden shadow-[0px_4px_24px_rgba(92,85,78,0.08)] bg-surface-container">
+      <div class="relative w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9]">
+        <img alt="Elegant Indian woman with exquisite rose-gold and cream leather vanity case bag" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmz3aN28XRnxndlYo2pMv3zFDvVSjZct8ut3UwhURUvC4_Vh3VKDKcbHw-TlKnZVZBoW-3bjvt5IcKb904SH4viT9rFuzV6PET7h56AXAW6MOFdS7pIn3gObX_d9WFqhEBN2jO6-Dop73ozx5jlGSK8MV9u9ZjYcLfvKGwsKoWxnjTRGtbSQc5EUYBnN5YpYKXIzNY98Ml9BUeqCwlVTKRLYyGdEL_cUF2cNVaYnWy"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 pointer-events-none"></div>
+        
+        <div class="absolute top-4 left-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-bright/95 backdrop-blur-md text-on-surface text-label-caps font-label-caps uppercase tracking-widest shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Festive Atelier 2026
+          </span>
+        </div>
+
+        <div class="absolute bottom-0 inset-x-0 p-gutter sm:p-space-lg flex flex-col gap-space-xs text-on-primary max-w-2xl">
+          <p class="font-label-caps text-label-caps uppercase tracking-widest text-tertiary-fixed opacity-95">Bespoke Indian Luxury</p>
+          <h1 class="font-display-hero-mobile sm:font-display-hero text-display-hero-mobile sm:text-display-hero text-on-primary leading-tight">
+            Royale Lifestyle.<br/>Carry Ejitas.
+          </h1>
+          <p class="font-body-md text-body-md text-surface-container-high max-w-md line-clamp-2">
+            Handcrafted vanity bags and organizers tailored for the grace of the modern Indian woman.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-space-xs mt-space-2xs pt-space-2xs">
+            <a class="w-full sm:w-auto h-[50px] px-8 rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform" href="/shop">
+              <span>Shop the Collection</span>
+              <span class="material-symbols-outlined text-[18px] text-tertiary-fixed">arrow_forward</span>
+            </a>
+            <a class="w-full sm:w-auto h-[50px] px-8 rounded-full bg-surface-bright/20 backdrop-blur-md text-on-primary font-title-md text-title-md flex items-center justify-center active:scale-95 transition-transform hover:bg-surface-bright/30" href="/shop?sort=newest">
+              Explore New Arrivals
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Propositions Banner -->
+  <section class="px-gutter py-space-xs">
+    <div class="grid grid-cols-3 gap-space-2xs p-space-sm rounded-xl bg-surface-container-low border border-surface-variant/40">
+      <div class="flex flex-col items-center text-center gap-1">
+        <span class="material-symbols-outlined text-secondary text-[22px]">local_shipping</span>
+        <span class="font-title-md text-[11px] leading-tight font-semibold text-on-surface">Pan-India Express</span>
+        <span class="font-body-sm text-[10px] text-on-surface-variant hidden sm:inline">Complimentary over ₹1,499</span>
+      </div>
+      <div class="flex flex-col items-center text-center gap-1">
+        <span class="material-symbols-outlined text-secondary text-[22px]">verified</span>
+        <span class="font-title-md text-[11px] leading-tight font-semibold text-on-surface">Artisan Verified</span>
+        <span class="font-body-sm text-[10px] text-on-surface-variant hidden sm:inline">24K brushed brass</span>
+      </div>
+      <div class="flex flex-col items-center text-center gap-1">
+        <span class="material-symbols-outlined text-secondary text-[22px]">published_with_changes</span>
+        <span class="font-title-md text-[11px] leading-tight font-semibold text-on-surface">Easy 7-Day Returns</span>
+        <span class="font-body-sm text-[10px] text-on-surface-variant hidden sm:inline">Doorstep pickup available</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Categories Horizontal Scroller -->
+  <section class="py-space-lg">
+    <div class="px-gutter flex items-end justify-between mb-space-sm">
+      <div>
+        <p class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-semibold">Curation</p>
+        <h2 class="font-headline-md text-headline-md text-on-surface">Signature Categories</h2>
+      </div>
+      <a class="font-title-md text-title-md text-secondary flex items-center gap-0.5 hover:underline" href="/shop">
+        <span>View all</span>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+      </a>
+    </div>
+
+    <div class="flex gap-space-sm overflow-x-auto px-gutter pb-space-xs snap-x snap-mandatory">
+      <!-- Vanity Trunks -->
+      <a class="flex-shrink-0 w-36 sm:w-48 flex flex-col gap-2 snap-start group" href="/shop?category=vanity">
+        <div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Vanity Trunks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHoIz511UdCvPAYuysvWPFSjuI0lTgwf_38tipAg2_ojXOsM2jFUXXjEfLC3gH6e2RGNTi_vIJlpWThb5Dy8zyPO09-Hc1qPv6VLphbhHJPVakmTk-JVyZkA1iGgBF3lbvH3woeWx9KUYiwmfLgFBnpIawEcUc4tbXBBXy7Pa-I2EKFjZvLJr8L21vWRhZuDVQ2lvfql9WeT61BlOkIeS3eSsFbd9a8sK9wwOrGMzK"/>
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-bright/90 text-on-surface font-label-caps text-[9px] uppercase tracking-wider font-bold">Iconic</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors font-semibold">Vanity Trunks</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Signature Heirloom</span>
+        </div>
+      </a>
+
+      <!-- Slings -->
+      <a class="flex-shrink-0 w-36 sm:w-48 flex flex-col gap-2 snap-start group" href="/shop?category=sling">
+        <div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Luxury Slings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiCoaRUD8B7RFV3SpT6S68RoZoTuKD9SNZalt1Du3GBIBmAkwMjt1IftWOc9i9H0EqFzFMUKVvaoJedk4oqi6Bme5ydXd3Fb98BJnDoqpsO4Mx8NHz87DHoilsMC1es_EAiVN_eGENIpEqdFYf4L1kpjpVS5Y_1HGbl2J7w6Na7T_DuEhXxjHI_EscwjBk0hsq4szd9zlrBtMtXfp0nS5iVjmZ74ZO0hOsoGvvrCpA"/>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors font-semibold">Luxury Slings</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Day to Soirée</span>
+        </div>
+      </a>
+
+      <!-- Totes -->
+      <a class="flex-shrink-0 w-36 sm:w-48 flex flex-col gap-2 snap-start group" href="/shop?category=totes">
+        <div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Commute Totes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbZ-sqQibIGVmS_IJYcvMXwa7sapTTarEOxwIam7KY0E-9mD6WYLmxzfOdMdJVqUJo6f3Vg1cdTFU6fOZ5-MkwMunkc_55FzW9xnYGGuaMiU83Uvz7wnfRjdtqvw94derwvcU5UnblDEkgSrTtsfQ7P2zp9142LtehQuyIqUczxCVMGL46RHqOzVxrv0xBmNoQ7zjkm7QeLo4SOuNh3cpZgJDHPE2codO5rxOQXpaB"/>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors font-semibold">Commute Totes</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Compartmentalized</span>
+        </div>
+      </a>
+
+      <!-- Organizers -->
+      <a class="flex-shrink-0 w-36 sm:w-48 flex flex-col gap-2 snap-start group" href="/shop?category=organisers">
+        <div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cosmetic Organizers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0HNS1WpuRHOe6E6-DTPXcH10qDgZ_sqwyQZgdrG5u9RE6l_l7A-XKhcbB7WwXdJwdMqF19R59GeG53cYRgMYSI8LoRjQ9BkXiQpXLpJo_ogWRd0LGfvjetrvm4qUT8be1-T5U1ZyYc18VHiCqV-w-GHQ29P7M8mjXz3cDF3zcVS_C5zFvA7DzLrr_ULvo36exNy3fgAflIlAfpBFQSfirVdcXVFyqaobhL9zQkaW4"/>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors font-semibold">Cosmetic Organizers</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Tiered Luxury</span>
+        </div>
+      </a>
+
+      <!-- Jewellery Boxes -->
+      <a class="flex-shrink-0 w-36 sm:w-48 flex flex-col gap-2 snap-start group" href="/shop?category=jewelry">
+        <div class="w-full aspect-[4/5] rounded-xl overflow-hidden bg-surface-container relative">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Jewellery Boxes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOKQs8mxbhaO7SGm4WfOOZL6WP6y3QVatlTxYbQk3qDTZvWGlkJ-tpmvSUDmclcYa9yE1bCKcSiZ725aYAtcIaFS38QbrLbieRFZcbuzEYUWai77jZOdubLjMvE-yElhAmvo3rdXH4cL02o2Zt-I9StoTUYwmc6wSvdjyj4cJOEjO5h_YGJEOUk2vIeUcHefmOwje1l8_XLd9fQuXGthjLmgbNK3G-DsShPRtPGNZd"/>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors font-semibold">Jewellery Boxes</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Anti-Tarnish Velvet</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Products Grid -->
+  <section class="px-gutter py-space-sm">
+    <div class="flex items-end justify-between mb-space-sm">
+      <div>
+        <p class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-semibold">Handcrafted Perfection</p>
+        <h2 class="font-headline-md text-headline-md text-on-surface">Signature Bestsellers</h2>
+      </div>
+      <a class="font-title-md text-title-md text-secondary flex items-center gap-0.5 hover:underline" href="/shop">
+        <span>View all ({{ products|length }})</span>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm">
+      {% for p in products[:4] %}
+      <article class="group flex flex-col bg-surface-container-lowest rounded-xl p-space-xs shadow-sm hover:shadow-md transition-shadow relative border border-surface-variant/30">
+        <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+          <a href="/product/{{ p.slug }}">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ p.images[0] }}" alt="{{ p.name }}"/>
+          </a>
+
+          {% if p.badge %}
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-[9px] uppercase tracking-wider font-bold">
+            {{ p.badge }}
+          </span>
+          {% endif %}
+
+          <button aria-label="Add to wishlist" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface flex items-center justify-center active:scale-90 transition-transform shadow-sm" onclick="Ejitas.toggleWishlist({{ p.id }}, this)" type="button">
+            <span class="material-symbols-outlined text-[18px]">favorite</span>
+          </button>
+
+          <button aria-label="Quick Add to Bag" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md active:scale-90 transition-transform" onclick="Ejitas.addToBag({{ p.id }})" type="button">
+            <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col pt-space-xs gap-1">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-body-sm text-body-sm font-semibold text-on-surface">{{ p.rating }}</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">({{ p.reviews_count }})</span>
+          </div>
+
+          <a href="/product/{{ p.slug }}">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1 leading-snug group-hover:text-secondary transition-colors">{{ p.name }}</h3>
+          </a>
+          <span class="font-body-sm text-body-sm text-on-surface-variant truncate">{{ p.category }}</span>
+
+          <div class="flex items-baseline gap-1.5 flex-wrap pt-0.5">
+            <span class="font-currency-price text-currency-price text-on-surface font-semibold">₹{{ "{:,.0f}".format(p.price) }}</span>
+            {% if p.original_price > p.price %}
+            <span class="font-body-sm text-body-sm text-on-surface-variant line-through">₹{{ "{:,.0f}".format(p.original_price) }}</span>
+            <span class="font-label-caps text-[10px] text-secondary font-bold">{{ p.discount_percent }}% OFF</span>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Editorial Spotlight Banner -->
+  <section class="px-gutter py-space-md">
+    <div class="relative overflow-hidden rounded-2xl bg-surface-container-low p-space-md sm:p-space-lg shadow-sm border border-surface-variant/40">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-space-md">
+        <div class="flex flex-col gap-2 max-w-lg">
+          <span class="font-label-caps text-label-caps text-on-tertiary-container uppercase tracking-widest font-bold">
+            Bridal Trousseau Special
+          </span>
+          <h2 class="font-headline-lg-mobile sm:font-headline-lg text-on-surface font-medium leading-snug">
+            The Royal Vanity Trunk Trio
+          </h2>
+          <p class="font-body-md text-on-surface-variant">
+            Champagne brass locks, water-resistant velvet compartments, and heirloom monograms handcrafted for your grand celebrations.
+          </p>
+          <div class="pt-2 flex items-center gap-3">
+            <a href="/shop?category=vanity" class="px-6 py-2.5 rounded-full bg-primary text-on-primary font-title-md text-title-md shadow-md active:scale-95 transition-transform">
+              Explore Vanity Trunks
+            </a>
+            <a href="https://wa.me/" target="_blank" class="px-6 py-2.5 rounded-full bg-surface-bright text-on-surface font-title-md text-title-md border border-surface-variant/60 hover:bg-surface-container active:scale-95 transition-transform flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[18px] text-emerald-500">chat</span>
+              <span>Stylist Concierge</span>
+            </a>
+          </div>
+        </div>
+        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shadow-md flex-shrink-0">
+          <span class="material-symbols-outlined text-4xl sm:text-5xl">loyalty</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Incentive -->
+  <section class="px-gutter py-space-md">
+    <div class="rounded-2xl bg-surface-container-high p-space-md sm:p-space-lg flex flex-col items-center text-center gap-space-xs border border-surface-variant/40">
+      <div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">mark_email_read</span>
+      </div>
+      <span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">Privilege Club</span>
+      <h2 class="font-headline-md text-headline-md text-on-surface">Enjoy 10% Off Your First Atelier Order</h2>
+      <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+        Receive exclusive invitations to private previews, bespoke monogramming events, and artisanal trunk reveals.
+      </p>
+      
+      <form class="w-full max-w-md mt-space-2xs flex flex-col sm:flex-row gap-2" onsubmit="handleSubscribe(event)">
+        <input class="w-full h-[48px] px-4 rounded-full bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary shadow-sm" placeholder="Enter your email address" required="" type="email"/>
+        <button class="w-full sm:w-auto px-6 h-[48px] rounded-full bg-primary text-on-primary font-title-md text-title-md flex items-center justify-center flex-shrink-0 active:scale-95 transition-transform shadow-md" type="submit">
+          Claim 10% Off
+        </button>
+      </form>
+      <span class="font-body-sm text-[11px] text-on-surface-variant">Instant code sent to inbox. Valid on orders above ₹1,499.</span>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  async function handleSubscribe(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const input = e.target.querySelector('input');
+    const email = input.value.trim();
+    if (!email) return;
+
+    btn.disabled = true;
+    btn.innerText = 'Registering...';
+
+    try {
+      const res = await fetch('/api/concierge/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'home_vip_banner' })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        btn.innerText = 'Code: EJITAS10 Active!';
+        btn.classList.add('bg-secondary');
+        input.value = '';
+        input.placeholder = 'Details saved in database! Code: EJITAS10';
+        localStorage.setItem('ejitas_coupon_code', 'EJITAS10');
+        Ejitas.toast('Details saved in database! 10% Off EJITAS10 applied.', 'success');
+      } else {
+        Ejitas.toast(data.detail || 'Could not subscribe', 'error');
+        btn.disabled = false;
+        btn.innerText = 'Claim 10% Off';
+      }
+    } catch (err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.innerText = 'Claim 10% Off';
+    }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+
+{% block title %}Shop Women's Luxury Bags & Vanity Cases | Ejitas{% endblock %}
+
+{% block content %}
+<div class="flex flex-col w-full">
+  <!-- Atelier Curated Editorial Header -->
+  <section class="px-margin pt-space-xs pb-space-sm flex flex-col gap-space-2xs">
+    <div class="flex items-center gap-space-xs">
+      <span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary font-bold">Atelier Collection</span>
+      <span class="w-1 h-1 rounded-full bg-secondary"></span>
+      <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Handcrafted in India</span>
+    </div>
+    <div class="flex items-baseline justify-between gap-space-xs">
+      <h1 class="font-headline-lg-mobile sm:font-headline-lg font-medium text-on-surface">Women’s Bags & Vanity Cases</h1>
+    </div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant">
+      Handcrafted Designs • Free India Shipping Above ₹1,499 • Heirloom Stitching
+    </p>
+  </section>
+
+  <!-- Sticky Merchandising Control Bar -->
+  <section class="sticky top-[92px] z-30 bg-surface/95 backdrop-blur-md pb-space-xs pt-1 shadow-xs border-b border-surface-variant/30">
+    <!-- Category Quick Pill Rail -->
+    <div class="flex items-center gap-space-xs overflow-x-auto px-margin scrollbar-none pb-space-xs" id="category-pills">
+      <button class="filter-chip px-4 py-2 rounded-full font-title-md text-title-md shrink-0 shadow-xs active:scale-95 transition-all {% if not current_category or current_category == 'all' %}bg-primary text-on-primary{% else %}bg-surface-container-low text-on-surface hover:bg-surface-container{% endif %}" onclick="filterCategory('all', this)" type="button">
+        All Creations
+      </button>
+      <button class="filter-chip px-4 py-2 rounded-full font-title-md text-title-md shrink-0 active:scale-95 transition-all {% if current_category == 'vanity' %}bg-primary text-on-primary{% else %}bg-surface-container-low text-on-surface hover:bg-surface-container{% endif %}" onclick="filterCategory('vanity', this)" type="button">
+        Vanity Cases & Trunks
+      </button>
+      <button class="filter-chip px-4 py-2 rounded-full font-title-md text-title-md shrink-0 active:scale-95 transition-all {% if current_category == 'sling' %}bg-primary text-on-primary{% else %}bg-surface-container-low text-on-surface hover:bg-surface-container{% endif %}" onclick="filterCategory('sling', this)" type="button">
+        Sling Bags
+      </button>
+      <button class="filter-chip px-4 py-2 rounded-full font-title-md text-title-md shrink-0 active:scale-95 transition-all {% if current_category == 'totes' %}bg-primary text-on-primary{% else %}bg-surface-container-low text-on-surface hover:bg-surface-container{% endif %}" onclick="filterCategory('totes', this)" type="button">
+        Commute Totes
+      </button>
+      <button class="filter-chip px-4 py-2 rounded-full font-title-md text-title-md shrink-0 active:scale-95 transition-all {% if current_category == 'organisers' %}bg-primary text-on-primary{% else %}bg-surface-container-low text-on-surface hover:bg-surface-container{% endif %}" onclick="filterCategory('organisers', this)" type="button">
+        Travel Organisers
+      </button>
+      <button class="filter-chip px-4 py-2 rounded-full font-title-md text-title-md shrink-0 active:scale-95 transition-all {% if current_category == 'jewelry' %}bg-primary text-on-primary{% else %}bg-surface-container-low text-on-surface hover:bg-surface-container{% endif %}" onclick="filterCategory('jewelry', this)" type="button">
+        Jewellery Boxes
+      </button>
+    </div>
+
+    <!-- Filter Trigger & Sorting Bar -->
+    <div class="px-margin flex items-center justify-between gap-space-sm pt-space-2xs">
+      <button class="flex items-center gap-space-xs px-3.5 py-2 rounded-full bg-surface-container text-on-surface font-title-md text-title-md active:scale-95 transition-transform" onclick="openFilterDrawer()" type="button">
+        <span class="material-symbols-outlined text-[18px] text-secondary">tune</span>
+        <span>Filters</span>
+      </button>
+
+      <!-- Sort Selection -->
+      <div class="relative flex items-center">
+        <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container-low text-on-surface font-title-md text-title-md border border-surface-variant/40">
+          <span class="material-symbols-outlined text-[18px] text-on-surface-variant">swap_vert</span>
+          <select class="bg-transparent text-on-surface font-title-md text-title-md pr-4 focus:outline-none appearance-none cursor-pointer" id="sort-dropdown" onchange="handleSortChange(this.value)">
+            <option value="featured" {% if current_sort == 'featured' %}selected{% endif %}>Featured</option>
+            <option value="bestseller" {% if current_sort == 'bestseller' %}selected{% endif %}>Bestselling</option>
+            <option value="price-asc" {% if current_sort == 'price-asc' %}selected{% endif %}>Price: Low to High</option>
+            <option value="price-desc" {% if current_sort == 'price-desc' %}selected{% endif %}>Price: High to Low</option>
+            <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>Newest Additions</option>
+          </select>
+          <span class="material-symbols-outlined text-[16px] text-on-surface-variant pointer-events-none -ml-3">expand_more</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dual-Column Luxury Product Grid -->
+  <section class="px-margin pt-space-sm pb-space-lg">
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-space-sm">
+      {% for p in products %}
+      <article class="group flex flex-col bg-surface-container-lowest rounded-xl p-space-xs shadow-sm hover:shadow-md transition-shadow relative border border-surface-variant/30">
+        <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+          <a href="/product/{{ p.slug }}">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ p.images[0] }}" alt="{{ p.name }}"/>
+          </a>
+
+          {% if p.badge %}
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-[9px] uppercase tracking-wider font-bold">
+            {{ p.badge }}
+          </span>
+          {% endif %}
+
+          <button aria-label="Add to wishlist" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface flex items-center justify-center active:scale-90 transition-transform shadow-sm" onclick="Ejitas.toggleWishlist({{ p.id }}, this)" type="button">
+            <span class="material-symbols-outlined text-[18px]">favorite</span>
+          </button>
+
+          <button aria-label="Quick Add to Bag" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md active:scale-90 transition-transform hover:bg-secondary" onclick="Ejitas.addToBag({{ p.id }})" type="button">
+            <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col pt-space-xs gap-1">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-body-sm text-body-sm font-semibold text-on-surface">{{ p.rating }}</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">({{ p.reviews_count }})</span>
+          </div>
+
+          <a href="/product/{{ p.slug }}">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1 leading-snug group-hover:text-secondary transition-colors">{{ p.name }}</h2>
+          </a>
+          <span class="font-body-sm text-body-sm text-on-surface-variant truncate">{{ p.category }}</span>
+
+          <div class="flex items-baseline gap-1.5 flex-wrap pt-0.5">
+            <span class="font-currency-price text-currency-price text-on-surface font-semibold">₹{{ "{:,.0f}".format(p.price) }}</span>
+            {% if p.original_price > p.price %}
+            <span class="font-body-sm text-body-sm text-on-surface-variant line-through">₹{{ "{:,.0f}".format(p.original_price) }}</span>
+            <span class="font-label-caps text-[10px] text-secondary font-bold">{{ p.discount_percent }}% OFF</span>
+            {% endif %}
+          </div>
+
+          {% if p.colors %}
+          <div class="flex items-center gap-1.5 pt-1">
+            {% for c in p.colors %}
+            <span class="w-4 h-4 rounded-full border border-surface-variant" style="background-color: {{ c.hex }};" title="{{ c.name }}"></span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Empty State if filtered out -->
+    <div id="no-products-msg" class="hidden py-16 text-center flex-col items-center justify-center">
+      <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-3">
+        <span class="material-symbols-outlined text-3xl">sentiment_dissatisfied</span>
+      </div>
+      <p class="font-headline-sm text-on-surface">No products found</p>
+      <p class="font-body-sm text-on-surface-variant mt-1">Try selecting another category or clearing filters.</p>
+      <button onclick="filterCategory('all')" class="mt-4 px-6 py-2 rounded-full bg-primary text-on-primary font-title-md">
+        View All Creations
+      </button>
+    </div>
+  </section>
+
+  <!-- Luxury Assurance Bar -->
+  <section class="mx-margin mb-space-lg p-space-md rounded-xl bg-surface-container-low shadow-sm flex flex-col gap-space-sm border border-surface-variant/40">
+    <div class="flex items-center justify-around text-center">
+      <div class="flex flex-col items-center gap-1 max-w-[90px]">
+        <div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-secondary shadow-xs">
+          <span class="material-symbols-outlined text-[20px]">verified_user</span>
+        </div>
+        <span class="font-label-caps text-[10px] text-on-surface font-semibold">100% Secure Checkout</span>
+      </div>
+      <div class="flex flex-col items-center gap-1 max-w-[90px]">
+        <div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-secondary shadow-xs">
+          <span class="material-symbols-outlined text-[20px]">payments</span>
+        </div>
+        <span class="font-label-caps text-[10px] text-on-surface font-semibold">COD Available</span>
+      </div>
+      <div class="flex flex-col items-center gap-1 max-w-[90px]">
+        <div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-secondary shadow-xs">
+          <span class="material-symbols-outlined text-[20px]">cycle</span>
+        </div>
+        <span class="font-label-caps text-[10px] text-on-surface font-semibold">7-Day Easy Exchange</span>
+      </div>
+    </div>
+    <div class="pt-space-xs text-center border-t border-surface-variant/30">
+      <p class="font-body-sm text-[11px] text-on-surface-variant tracking-wide">
+        Need bespoke bridal trunk curation? <a class="text-secondary font-semibold underline" href="https://wa.me/" target="_blank">Chat with Atelier Concierge</a>
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- Filter Modal Bottom Drawer -->
+<div class="fixed inset-0 z-50 hidden transition-opacity duration-300" id="filter-sheet">
+  <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm" onclick="closeFilterDrawer()"></div>
+  <div class="absolute bottom-0 inset-x-0 bg-surface-bright rounded-t-2xl max-h-[85vh] flex flex-col transform translate-y-full transition-transform duration-300 ease-out shadow-2xl z-10" id="filter-panel">
+    <div class="px-margin pt-space-md pb-space-sm flex items-center justify-between border-b border-surface-variant/40">
+      <div class="flex items-center gap-space-xs">
+        <span class="font-headline-sm text-headline-sm text-on-surface">Filter Collection</span>
+        <button onclick="resetFilters()" class="text-secondary font-title-md text-title-md underline ml-2" type="button">Reset</button>
+      </div>
+      <button onclick="closeFilterDrawer()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" type="button">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+    <div class="px-margin overflow-y-auto flex flex-col gap-space-md py-4">
+      <div>
+        <span class="font-title-lg text-title-lg text-on-surface font-semibold block mb-2">Price Range</span>
+        <div class="flex items-center gap-2">
+          <button onclick="applyPriceFilter(0, 2000)" class="px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface text-body-sm hover:bg-primary hover:text-on-primary">Under ₹2,000</button>
+          <button onclick="applyPriceFilter(2000, 3500)" class="px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface text-body-sm hover:bg-primary hover:text-on-primary">₹2,000 - ₹3,500</button>
+          <button onclick="applyPriceFilter(3500, 10000)" class="px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface text-body-sm hover:bg-primary hover:text-on-primary">₹3,500+</button>
+        </div>
+      </div>
+    </div>
+    <div class="p-margin bg-surface-container-low">
+      <button onclick="closeFilterDrawer()" class="w-full h-[48px] rounded-full bg-primary text-on-primary font-title-md shadow-md">
+        Show Results
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  let currentCategory = '{{ current_category or "all" }}';
+  let currentSort = '{{ current_sort or "featured" }}';
+
+  function openFilterDrawer() {
+    const sheet = document.getElementById('filter-sheet');
+    const panel = document.getElementById('filter-panel');
+    sheet.classList.remove('hidden');
+    sheet.classList.add('flex');
+    setTimeout(() => panel.classList.remove('translate-y-full'), 10);
+  }
+
+  function closeFilterDrawer() {
+    const sheet = document.getElementById('filter-sheet');
+    const panel = document.getElementById('filter-panel');
+    panel.classList.add('translate-y-full');
+    setTimeout(() => {
+      sheet.classList.remove('flex');
+      sheet.classList.add('hidden');
+    }, 200);
+  }
+
+  async function filterCategory(catSlug, btnEl) {
+    currentCategory = catSlug;
+    
+    // Update active pill styling
+    document.querySelectorAll('#category-pills button').forEach(b => {
+      b.classList.remove('bg-primary', 'text-on-primary');
+      b.classList.add('bg-surface-container-low', 'text-on-surface');
+    });
+    if (btnEl) {
+      btnEl.classList.remove('bg-surface-container-low', 'text-on-surface');
+      btnEl.classList.add('bg-primary', 'text-on-primary');
+    }
+
+    // Update URL history without page reload
+    const url = new URL(window.location);
+    url.searchParams.set('category', catSlug);
+    window.history.pushState({}, '', url);
+
+    await loadFilteredProducts();
+  }
+
+  async function handleSortChange(sortVal) {
+    currentSort = sortVal;
+    const url = new URL(window.location);
+    url.searchParams.set('sort', sortVal);
+    window.history.pushState({}, '', url);
+    await loadFilteredProducts();
+  }
+
+  async function applyPriceFilter(min, max) {
+    closeFilterDrawer();
+    await loadFilteredProducts(min, max);
+  }
+
+  function resetFilters() {
+    closeFilterDrawer();
+    filterCategory('all');
+  }
+
+  async function loadFilteredProducts(minPrice = null, maxPrice = null) {
+    const grid = document.getElementById('product-grid');
+    const emptyMsg = document.getElementById('no-products-msg');
+    
+    let apiUrl = `/api/products?category=${currentCategory}&sort=${currentSort}`;
+    const res = await fetch(apiUrl);
+    let items = await res.json();
+
+    if (minPrice !== null && maxPrice !== null) {
+      items = items.filter(p => p.price >= minPrice && p.price <= maxPrice);
+    }
+
+    if (items.length === 0) {
+      grid.innerHTML = '';
+      emptyMsg.classList.remove('hidden');
+      emptyMsg.classList.add('flex');
+      return;
+    }
+
+    emptyMsg.classList.add('hidden');
+    emptyMsg.classList.remove('flex');
+
+    grid.innerHTML = items.map(p => `
+      <article class="group flex flex-col bg-surface-container-lowest rounded-xl p-space-xs shadow-sm hover:shadow-md transition-shadow relative border border-surface-variant/30">
+        <div class="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low">
+          <a href="/product/${p.slug}">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.images[0]}" alt="${p.name}"/>
+          </a>
+
+          ${p.badge ? `
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-[9px] uppercase tracking-wider font-bold">
+            ${p.badge}
+          </span>` : ''}
+
+          <button aria-label="Add to wishlist" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface flex items-center justify-center active:scale-90 transition-transform shadow-sm" onclick="Ejitas.toggleWishlist(${p.id}, this)" type="button">
+            <span class="material-symbols-outlined text-[18px]">favorite</span>
+          </button>
+
+          <button aria-label="Quick Add to Bag" class="absolute bottom-2 right-2 w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md active:scale-90 transition-transform hover:bg-secondary" onclick="Ejitas.addToBag(${p.id})" type="button">
+            <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col pt-space-xs gap-1">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-body-sm text-body-sm font-semibold text-on-surface">${p.rating}</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">(${p.reviews_count})</span>
+          </div>
+
+          <a href="/product/${p.slug}">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1 leading-snug group-hover:text-secondary transition-colors">${p.name}</h2>
+          </a>
+          <span class="font-body-sm text-body-sm text-on-surface-variant truncate">${p.category}</span>
+
+          <div class="flex items-baseline gap-1.5 flex-wrap pt-0.5">
+            <span class="font-currency-price text-currency-price text-on-surface font-semibold">₹${p.price.toLocaleString('en-IN')}</span>
+            ${p.original_price > p.price ? `
+            <span class="font-body-sm text-body-sm text-on-surface-variant line-through">₹${p.original_price.toLocaleString('en-IN')}</span>
+            <span class="font-label-caps text-[10px] text-secondary font-bold">${p.discount_percent}% OFF</span>
+            ` : ''}
+          </div>
+
+          ${p.colors && p.colors.length > 0 ? `
+          <div class="flex items-center gap-1.5 pt-1">
+            ${p.colors.map(c => `
+              <span class="w-4 h-4 rounded-full border border-surface-variant" style="background-color: ${c.hex};" title="${c.name}"></span>
+            `).join('')}
+          </div>
+          ` : ''}
+        </div>
+      </article>
+    `).join('');
+  }
+</script>
+{% endblock %}

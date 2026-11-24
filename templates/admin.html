@@ -1,0 +1,465 @@
+{% extends "base.html" %}
+
+{% block title %}Live Database Registry & Admin Panel | Ejitas{% endblock %}
+
+{% block content %}
+<div class="px-margin max-w-7xl mx-auto w-full pb-28 pt-2">
+  <!-- Admin Header Banner -->
+  <div class="bg-surface-container-low p-space-md rounded-2xl border border-surface-variant/50 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="flex items-center gap-3.5">
+      <img alt="Ejitas Brand Logo" class="w-12 h-12 rounded-2xl object-cover shadow-md ring-1 ring-secondary/40" src="/static/images/ejitas-logo.jpg" />
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Ejitas Database Registry</h1>
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+            Live SQLite Active
+          </span>
+        </div>
+        <p class="font-body-sm text-[12px] text-on-surface-variant">
+          Real-time stored records of all customer details, orders, newsletter subscribers & concierge inquiries.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="loadAdminRecords()" class="px-4 py-2 rounded-xl bg-surface text-on-surface border border-surface-variant text-xs font-semibold flex items-center gap-1.5 hover:bg-surface-container transition-colors shadow-xs">
+        <span class="material-symbols-outlined text-[16px]">refresh</span>
+        <span>Refresh Records</span>
+      </button>
+      <a href="/shop" class="px-4 py-2 rounded-xl bg-primary text-on-primary text-xs font-semibold flex items-center gap-1.5 hover:bg-secondary transition-colors shadow-xs">
+        <span class="material-symbols-outlined text-[16px]">storefront</span>
+        <span>View Storefront</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- KPI Metrics Grid -->
+  <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-4">
+    <div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant/40 shadow-xs flex flex-col">
+      <div class="flex items-center justify-between text-on-surface-variant mb-1">
+        <span class="font-body-sm text-[11px] font-semibold uppercase tracking-wider">Registered Customers</span>
+        <span class="material-symbols-outlined text-[18px] text-secondary">people</span>
+      </div>
+      <span id="kpi-customers" class="font-title-lg text-2xl font-bold text-on-surface">...</span>
+      <span class="font-body-sm text-[10px] text-outline mt-0.5">Stored in `customers`</span>
+    </div>
+
+    <div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant/40 shadow-xs flex flex-col">
+      <div class="flex items-center justify-between text-on-surface-variant mb-1">
+        <span class="font-body-sm text-[11px] font-semibold uppercase tracking-wider">Orders Placed</span>
+        <span class="material-symbols-outlined text-[18px] text-secondary">shopping_bag</span>
+      </div>
+      <span id="kpi-orders" class="font-title-lg text-2xl font-bold text-on-surface">...</span>
+      <span class="font-body-sm text-[10px] text-outline mt-0.5">Stored in `orders`</span>
+    </div>
+
+    <div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant/40 shadow-xs flex flex-col">
+      <div class="flex items-center justify-between text-on-surface-variant mb-1">
+        <span class="font-body-sm text-[11px] font-semibold uppercase tracking-wider">Gross Revenue</span>
+        <span class="material-symbols-outlined text-[18px] text-emerald-600">currency_rupee</span>
+      </div>
+      <span id="kpi-revenue" class="font-title-lg text-2xl font-bold text-primary font-currency-price">...</span>
+      <span class="font-body-sm text-[10px] text-outline mt-0.5">Paid & Confirmed</span>
+    </div>
+
+    <div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant/40 shadow-xs flex flex-col">
+      <div class="flex items-center justify-between text-on-surface-variant mb-1">
+        <span class="font-body-sm text-[11px] font-semibold uppercase tracking-wider">VIP Club Leads</span>
+        <span class="material-symbols-outlined text-[18px] text-secondary">mail</span>
+      </div>
+      <span id="kpi-newsletter" class="font-title-lg text-2xl font-bold text-on-surface">...</span>
+      <span class="font-body-sm text-[10px] text-outline mt-0.5">Stored in `newsletter`</span>
+    </div>
+
+    <div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant/40 shadow-xs flex flex-col col-span-2 lg:col-span-1">
+      <div class="flex items-center justify-between text-on-surface-variant mb-1">
+        <span class="font-body-sm text-[11px] font-semibold uppercase tracking-wider">Concierge Inquiries</span>
+        <span class="material-symbols-outlined text-[18px] text-secondary">support_agent</span>
+      </div>
+      <span id="kpi-inquiries" class="font-title-lg text-2xl font-bold text-on-surface">...</span>
+      <span class="font-body-sm text-[10px] text-outline mt-0.5">Stored in `concierge`</span>
+    </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="flex items-center gap-2 border-b border-surface-variant/40 mt-6 pb-2 overflow-x-auto">
+    <button onclick="switchTab('customers')" id="tab-btn-customers" class="admin-tab-btn active px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 bg-primary text-on-primary">
+      <span class="material-symbols-outlined text-[16px]">person</span>
+      <span>Customers Registry (<span id="count-customers">0</span>)</span>
+    </button>
+    <button onclick="switchTab('orders')" id="tab-btn-orders" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-on-surface-variant hover:bg-surface-container">
+      <span class="material-symbols-outlined text-[16px]">receipt_long</span>
+      <span>Orders (<span id="count-orders">0</span>)</span>
+    </button>
+    <button onclick="switchTab('newsletter')" id="tab-btn-newsletter" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-on-surface-variant hover:bg-surface-container">
+      <span class="material-symbols-outlined text-[16px]">mark_email_read</span>
+      <span>Newsletter Subscribers (<span id="count-newsletter">0</span>)</span>
+    </button>
+    <button onclick="switchTab('inquiries')" id="tab-btn-inquiries" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-on-surface-variant hover:bg-surface-container">
+      <span class="material-symbols-outlined text-[16px]">support_agent</span>
+      <span>Concierge Inquiries (<span id="count-inquiries">0</span>)</span>
+    </button>
+    <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-on-surface-variant hover:bg-surface-container">
+      <span class="material-symbols-outlined text-[16px]">reviews</span>
+      <span>Customer Reviews (<span id="count-reviews">0</span>)</span>
+    </button>
+    <button onclick="switchTab('emails')" id="tab-btn-emails" class="admin-tab-btn px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 text-on-surface-variant hover:bg-surface-container">
+      <span class="material-symbols-outlined text-[16px] text-amber-600">outgoing_mail</span>
+      <span>Email Alerts (shaanventures1@gmail.com) (<span id="count-emails">0</span>)</span>
+    </button>
+  </div>
+
+  <!-- Tab Content: Customers Table -->
+  <div id="tab-customers" class="admin-tab-content mt-4">
+    <div class="bg-surface-container-lowest rounded-2xl border border-surface-variant/40 shadow-xs overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface-container-low border-b border-surface-variant/30 flex items-center justify-between">
+        <h3 class="font-title-md text-sm text-on-surface font-semibold flex items-center gap-2">
+          <span>Registered Customer Details</span>
+          <span class="font-normal text-xs text-on-surface-variant">(Auto-updated whenever someone fills checkout or concierge details)</span>
+        </h3>
+        <span class="text-xs text-outline font-mono">Table: `customers`</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-on-surface">
+          <thead class="bg-surface-container-high/60 uppercase font-semibold text-on-surface-variant border-b border-surface-variant/30">
+            <tr>
+              <th class="px-4 py-3">ID</th>
+              <th class="px-4 py-3">Customer Name</th>
+              <th class="px-4 py-3">Email Address</th>
+              <th class="px-4 py-3">Phone Number</th>
+              <th class="px-4 py-3">City & State</th>
+              <th class="px-4 py-3">PIN Code</th>
+              <th class="px-4 py-3">Orders</th>
+              <th class="px-4 py-3">Total Spent</th>
+              <th class="px-4 py-3">Registered On</th>
+            </tr>
+          </thead>
+          <tbody id="customers-tbody" class="divide-y divide-surface-variant/30">
+            <tr><td colspan="9" class="p-6 text-center text-on-surface-variant">Loading customers from database...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Orders Table -->
+  <div id="tab-orders" class="admin-tab-content hidden mt-4">
+    <div class="bg-surface-container-lowest rounded-2xl border border-surface-variant/40 shadow-xs overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface-container-low border-b border-surface-variant/30 flex items-center justify-between">
+        <h3 class="font-title-md text-sm text-on-surface font-semibold">Orders & Shipping Details Stored in Database</h3>
+        <span class="text-xs text-outline font-mono">Table: `orders`</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-on-surface">
+          <thead class="bg-surface-container-high/60 uppercase font-semibold text-on-surface-variant border-b border-surface-variant/30">
+            <tr>
+              <th class="px-4 py-3">Order #</th>
+              <th class="px-4 py-3">Customer</th>
+              <th class="px-4 py-3">Contact</th>
+              <th class="px-4 py-3">Delivery Address</th>
+              <th class="px-4 py-3">Items</th>
+              <th class="px-4 py-3">Payment</th>
+              <th class="px-4 py-3">Amount</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody" class="divide-y divide-surface-variant/30">
+            <tr><td colspan="9" class="p-6 text-center text-on-surface-variant">Loading orders from database...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Newsletter Subscribers -->
+  <div id="tab-newsletter" class="admin-tab-content hidden mt-4">
+    <div class="bg-surface-container-lowest rounded-2xl border border-surface-variant/40 shadow-xs overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface-container-low border-b border-surface-variant/30 flex items-center justify-between">
+        <h3 class="font-title-md text-sm text-on-surface font-semibold">Privilege Club Email Subscribers</h3>
+        <span class="text-xs text-outline font-mono">Table: `newsletter_subscribers`</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-on-surface">
+          <thead class="bg-surface-container-high/60 uppercase font-semibold text-on-surface-variant border-b border-surface-variant/30">
+            <tr>
+              <th class="px-4 py-3">ID</th>
+              <th class="px-4 py-3">Subscriber Email</th>
+              <th class="px-4 py-3">Acquisition Source</th>
+              <th class="px-4 py-3">Subscribed Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="newsletter-tbody" class="divide-y divide-surface-variant/30">
+            <tr><td colspan="4" class="p-6 text-center text-on-surface-variant">Loading newsletter subscribers...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Concierge Inquiries -->
+  <div id="tab-inquiries" class="admin-tab-content hidden mt-4">
+    <div class="bg-surface-container-lowest rounded-2xl border border-surface-variant/40 shadow-xs overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface-container-low border-b border-surface-variant/30 flex items-center justify-between">
+        <h3 class="font-title-md text-sm text-on-surface font-semibold">Styling & Concierge Inquiries</h3>
+        <span class="text-xs text-outline font-mono">Table: `concierge_inquiries`</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-on-surface">
+          <thead class="bg-surface-container-high/60 uppercase font-semibold text-on-surface-variant border-b border-surface-variant/30">
+            <tr>
+              <th class="px-4 py-3">ID</th>
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Mobile Phone</th>
+              <th class="px-4 py-3">Email</th>
+              <th class="px-4 py-3">Consultation Occasion</th>
+              <th class="px-4 py-3">Notes & Inquiries</th>
+              <th class="px-4 py-3">Date</th>
+            </tr>
+          </thead>
+          <tbody id="inquiries-tbody" class="divide-y divide-surface-variant/30">
+            <tr><td colspan="7" class="p-6 text-center text-on-surface-variant">Loading inquiries...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Reviews -->
+  <div id="tab-reviews" class="admin-tab-content hidden mt-4">
+    <div class="bg-surface-container-lowest rounded-2xl border border-surface-variant/40 shadow-xs overflow-hidden">
+      <div class="px-5 py-3.5 bg-surface-container-low border-b border-surface-variant/30 flex items-center justify-between">
+        <h3 class="font-title-md text-sm text-on-surface font-semibold">Product Customer Reviews</h3>
+        <span class="text-xs text-outline font-mono">Table: `reviews`</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-on-surface">
+          <thead class="bg-surface-container-high/60 uppercase font-semibold text-on-surface-variant border-b border-surface-variant/30">
+            <tr>
+              <th class="px-4 py-3">Product</th>
+              <th class="px-4 py-3">Author</th>
+              <th class="px-4 py-3">Location</th>
+              <th class="px-4 py-3">Rating</th>
+              <th class="px-4 py-3">Title</th>
+              <th class="px-4 py-3">Review Comment</th>
+              <th class="px-4 py-3">Date</th>
+            </tr>
+          </thead>
+          <tbody id="reviews-tbody" class="divide-y divide-surface-variant/30">
+            <tr><td colspan="7" class="p-6 text-center text-on-surface-variant">Loading reviews...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Email Notifications Log -->
+  <div id="tab-emails" class="admin-tab-content mt-4 hidden">
+    <div class="bg-surface-container-lowest rounded-2xl border border-surface-variant/40 shadow-xs overflow-hidden">
+      <div class="px-5 py-3.5 bg-amber-500/10 border-b border-surface-variant/30 flex items-center justify-between">
+        <h3 class="font-title-md text-sm text-on-surface font-semibold flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px] text-amber-600">mail</span>
+          <span>Automated Email Notifications Dispatched to shaanventures1@gmail.com</span>
+        </h3>
+        <span class="text-xs text-outline font-mono">Table: `email_notifications`</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-on-surface">
+          <thead class="bg-surface-container-high/60 uppercase font-semibold text-on-surface-variant border-b border-surface-variant/30">
+            <tr>
+              <th class="px-4 py-3">ID</th>
+              <th class="px-4 py-3">Recipient</th>
+              <th class="px-4 py-3">Email Subject</th>
+              <th class="px-4 py-3">Event Type</th>
+              <th class="px-4 py-3">Ref ID</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Dispatched At</th>
+            </tr>
+          </thead>
+          <tbody id="emails-tbody" class="divide-y divide-surface-variant/30">
+            <tr><td colspan="7" class="p-6 text-center text-on-surface-variant">Loading email alerts...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  let adminData = null;
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+      btn.classList.remove('bg-primary', 'text-on-primary');
+      btn.classList.add('text-on-surface-variant');
+    });
+    const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+    if (activeBtn) {
+      activeBtn.classList.add('bg-primary', 'text-on-primary');
+      activeBtn.classList.remove('text-on-surface-variant');
+    }
+
+    document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.add('hidden'));
+    const content = document.getElementById(`tab-${tabId}`);
+    if (content) {
+      content.classList.remove('hidden');
+    }
+  }
+
+  async function loadAdminRecords() {
+    try {
+      const res = await fetch('/api/admin/records');
+      adminData = await res.json();
+
+      // Update KPI counters
+      document.getElementById('kpi-customers').innerText = adminData.stats.total_customers;
+      document.getElementById('kpi-orders').innerText = adminData.stats.total_orders;
+      document.getElementById('kpi-revenue').innerText = `₹${adminData.stats.total_revenue.toLocaleString('en-IN')}`;
+      document.getElementById('kpi-newsletter').innerText = adminData.stats.total_newsletter;
+      document.getElementById('kpi-inquiries').innerText = adminData.stats.total_inquiries;
+
+      // Update Tab counters
+      document.getElementById('count-customers').innerText = adminData.stats.total_customers;
+      document.getElementById('count-orders').innerText = adminData.stats.total_orders;
+      document.getElementById('count-newsletter').innerText = adminData.stats.total_newsletter;
+      document.getElementById('count-inquiries').innerText = adminData.stats.total_inquiries;
+      document.getElementById('count-reviews').innerText = adminData.stats.total_reviews;
+      if (document.getElementById('count-emails')) {
+        document.getElementById('count-emails').innerText = adminData.stats.total_emails_logged || (adminData.emails ? adminData.emails.length : 0);
+      }
+
+      // Render Customers
+      const cTbody = document.getElementById('customers-tbody');
+      if (adminData.customers.length === 0) {
+        cTbody.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-on-surface-variant">No customers stored yet. Fill out checkout or concierge to see details registered!</td></tr>`;
+      } else {
+        cTbody.innerHTML = adminData.customers.map(c => `
+          <tr class="hover:bg-surface-container-low transition-colors">
+            <td class="px-4 py-3 font-mono text-outline font-medium">#${c.id}</td>
+            <td class="px-4 py-3 font-semibold text-on-surface">${c.name || 'Anonymous'}</td>
+            <td class="px-4 py-3 text-secondary font-mono">${c.email}</td>
+            <td class="px-4 py-3">${c.phone || '—'}</td>
+            <td class="px-4 py-3">${c.city ? `${c.city}, ${c.state}` : '—'}</td>
+            <td class="px-4 py-3 font-mono">${c.postal_code || '—'}</td>
+            <td class="px-4 py-3 font-bold">${c.total_orders || 0}</td>
+            <td class="px-4 py-3 font-currency-price font-semibold text-primary">₹${(c.total_spent || 0).toLocaleString('en-IN')}</td>
+            <td class="px-4 py-3 text-outline text-[11px]">${c.created_at || '—'}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Render Orders
+      const oTbody = document.getElementById('orders-tbody');
+      if (adminData.orders.length === 0) {
+        oTbody.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-on-surface-variant">No orders placed yet. Add a bag to bag and place an order to see it stored here!</td></tr>`;
+      } else {
+        oTbody.innerHTML = adminData.orders.map(o => `
+          <tr class="hover:bg-surface-container-low transition-colors">
+            <td class="px-4 py-3 font-mono font-bold text-primary">${o.order_number}</td>
+            <td class="px-4 py-3">
+              <span class="font-semibold block">${o.customer_name}</span>
+              <span class="text-outline text-[11px] font-mono">${o.customer_email}</span>
+            </td>
+            <td class="px-4 py-3">${o.customer_phone}</td>
+            <td class="px-4 py-3 max-w-xs truncate" title="${o.address_line1}, ${o.address_line2 || ''}, ${o.city}, ${o.state} - ${o.postal_code}">
+              ${o.address_line1}, ${o.city} (${o.postal_code})
+            </td>
+            <td class="px-4 py-3 font-semibold">${o.items_count} item(s)</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface text-[10px] font-medium">${o.payment_method}</span>
+            </td>
+            <td class="px-4 py-3 font-currency-price font-bold text-primary">₹${o.total.toLocaleString('en-IN')}</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">${o.order_status}</span>
+            </td>
+            <td class="px-4 py-3 text-outline text-[11px]">${o.created_at}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Render Newsletter
+      const nTbody = document.getElementById('newsletter-tbody');
+      if (adminData.newsletter.length === 0) {
+        nTbody.innerHTML = `<tr><td colspan="4" class="p-6 text-center text-on-surface-variant">No email subscribers yet. Enter email in the home page banner to test!</td></tr>`;
+      } else {
+        nTbody.innerHTML = adminData.newsletter.map(n => `
+          <tr class="hover:bg-surface-container-low transition-colors">
+            <td class="px-4 py-3 font-mono text-outline">#${n.id}</td>
+            <td class="px-4 py-3 font-semibold text-secondary font-mono">${n.email}</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-[10px] font-medium">${n.source}</span>
+            </td>
+            <td class="px-4 py-3 text-outline text-[11px]">${n.created_at}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Render Inquiries
+      const iTbody = document.getElementById('inquiries-tbody');
+      if (adminData.inquiries.length === 0) {
+        iTbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-on-surface-variant">No concierge inquiries yet. Click WhatsApp Concierge to test!</td></tr>`;
+      } else {
+        iTbody.innerHTML = adminData.inquiries.map(i => `
+          <tr class="hover:bg-surface-container-low transition-colors">
+            <td class="px-4 py-3 font-mono text-outline">#${i.id}</td>
+            <td class="px-4 py-3 font-semibold text-on-surface">${i.name}</td>
+            <td class="px-4 py-3 font-mono">${i.phone}</td>
+            <td class="px-4 py-3 font-mono text-secondary">${i.email || '—'}</td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-0.5 rounded-full bg-secondary-fixed/50 text-secondary text-[10px] font-semibold">${i.occasion}</span>
+            </td>
+            <td class="px-4 py-3 max-w-sm truncate" title="${i.notes || ''}">${i.notes || '—'}</td>
+            <td class="px-4 py-3 text-outline text-[11px]">${i.created_at}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Render Reviews
+      const rTbody = document.getElementById('reviews-tbody');
+      rTbody.innerHTML = adminData.reviews.map(r => `
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="px-4 py-3 font-semibold text-on-surface">${r.product_name || 'Bespoke Item'}</td>
+          <td class="px-4 py-3 font-medium">${r.author}</td>
+          <td class="px-4 py-3 text-outline">${r.location || 'India'}</td>
+          <td class="px-4 py-3 text-amber-500 font-bold">${'★'.repeat(r.rating)}</td>
+          <td class="px-4 py-3 font-semibold">${r.title || '—'}</td>
+          <td class="px-4 py-3 max-w-xs truncate" title="${r.comment}">${r.comment}</td>
+          <td class="px-4 py-3 text-outline text-[11px]">${r.created_at}</td>
+        </tr>
+      `).join('');
+
+      // Render Email Notifications Log
+      const eTbody = document.getElementById('emails-tbody');
+      if (eTbody && adminData.emails) {
+        if (adminData.emails.length === 0) {
+          eTbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-on-surface-variant">No email notifications logged yet. Complete a checkout to test!</td></tr>`;
+        } else {
+          eTbody.innerHTML = adminData.emails.map(e => `
+            <tr class="hover:bg-surface-container-low transition-colors">
+              <td class="px-4 py-3 font-mono text-outline font-bold">#${e.id}</td>
+              <td class="px-4 py-3 font-mono font-semibold text-secondary">${e.recipient}</td>
+              <td class="px-4 py-3 font-medium text-on-surface">${e.subject}</td>
+              <td class="px-4 py-3">
+                <span class="px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-[10px] font-bold uppercase">${e.event_type}</span>
+              </td>
+              <td class="px-4 py-3 font-mono text-primary font-bold">${e.reference_id || '—'}</td>
+              <td class="px-4 py-3">
+                <span class="px-2 py-0.5 rounded-full ${e.status === 'sent' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-900'} text-[10px] font-bold uppercase">${e.status}</span>
+              </td>
+              <td class="px-4 py-3 text-outline text-[11px]">${e.sent_at}</td>
+            </tr>
+          `).join('');
+        }
+      }
+
+    } catch (e) {
+      console.error(e);
+      Ejitas.toast('Could not load database records', 'error');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadAdminRecords);
+</script>
+{% endblock %}
