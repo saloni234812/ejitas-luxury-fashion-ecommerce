@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.ejitas.app",
+        "sha256_cert_fingerprints": ["E6:C2:A0:E7:4B:CF:DB:7E:6B:2E:9C:DE:D5:0D:73:64:D9:2A:93:9E:89:63:3B:EE:AF:E5:D6:0C:72:C6:03:DF"]
+      }
+    }]
