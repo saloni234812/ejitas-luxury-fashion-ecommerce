@@ -258,6 +258,14 @@ def page_admin(request: Request):
 def service_worker():
     return FileResponse(str(STATIC_DIR / "sw.js"), media_type="application/javascript")
 
+# Digital Asset Links for Android App / Play Store TWA
+@app.get("/.well-known/assetlinks.json")
+def assetlinks():
+    assetlinks_file = STATIC_DIR / "assetlinks.json"
+    if assetlinks_file.exists():
+        return FileResponse(str(assetlinks_file), media_type="application/json")
+    return JSONResponse(status_code=200, content=[])
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
